@@ -16,10 +16,9 @@ export default function Footer() {
   useGSAP(() => {
     gsap.fromTo(
       ".footer-fade",
-      { opacity: 0, y: 30 },
+      { y: 30 }, // <--- REMOVED opacity: 0
       {
-        opacity: 1,
-        y: 0,
+        y: 0,    // <--- REMOVED opacity: 1
         duration: 1,
         stagger: 0.15,
         ease: "power3.out",
