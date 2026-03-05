@@ -16,7 +16,7 @@ This repository contains the source code for my personal portfolio. The site is 
 * **Advanced SEO & Open Graph:** Fully optimized metadata, canonical URLs, and Twitter/LinkedIn card integration to ensure maximum visibility and professional link sharing.
 * **Custom Theming:** A bespoke "Architect" color palette mapped through Tailwind CSS variables, complete with custom selection colors and minimalist scrollbars.
 
-## 🛠️ Tech Stack
+## 🛠️ Tech Stack   
 
 * **Framework:** [Next.js](https://nextjs.org/) (App Router)
 * **Library:** [React](https://reactjs.org/)
