@@ -2,6 +2,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScroller from "@/components/logic/SmoothScroller";
 import { Analytics } from "@vercel/analytics/next"; // 1. ADDED IMPORT
+import Preloader from "@/components/global/Preloader";
+import CustomCursor from "@/components/global/CustomCursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -90,6 +92,8 @@ export default function RootLayout({ children }) {
           {/* Navbar sits on top of all pages */}
           {/* <Navbar /> */}
           <Analytics />
+          <Preloader />
+          <CustomCursor />
           
           <main>
             {children}
