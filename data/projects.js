@@ -106,49 +106,6 @@ export const projectDetails = {
     }
   },
 
-  "stackconnect": {
-    id: "stackconnect",
-    title: "Stack Connect",
-    tagline: "Real-Time Developer Collaboration Ecosystem",
-    category: "Social Network",
-    status: "Open Source",
-
-    coverImage: "/projectImg/stackconnect/stackconnect.png",
-    gallery: [
-      { url: "/projectImg/stackconnect/stackconnec1t.png", caption: "Real-Time Socket.io Chat" },
-      { url: "/projectImg/stackconnect/stackconnect2.png", caption: "Syntax Highlighted Code Sharing" },
-      { url: "/projectImg/stackconnect/stackconnect3.png", caption: "Syntax Highlighted Code Sharing" }
-    ],
-
-    description: "A community platform solving the isolation of remote developers. Unlike standard forums, Stack Connect focuses on real-time interaction, allowing developers to pair program, chat, and share code snippets instantly without efficient syntax highlighting.",
-
-    technicalDecisions: [
-      {
-        title: "WebSockets Implementation",
-        reason: "Implemented Socket.io namespaces to separate chat rooms and global notifications, reducing server load."
-      }
-    ],
-
-    architecture: "Client-Server model with a dedicated WebSocket server layer for ephemeral messaging.",
-
-    impactMetrics: [
-      { label: "Performance", value: "95+", description: "Google Lighthouse Score" },
-      { label: "Latency", value: "<50ms", description: "Message delivery time" }
-    ],
-
-    techStack: {
-      frontend: ["Next.js 14", "TypeScript"],
-      backend: ["Node.js", "Socket.io"],
-      database: ["MongoDB", "Mongoose"],
-      tools: ["Vercel", "ESLint"]
-    },
-
-    links: {
-      github: "https://github.com/Eklak-Alam/Stack-Connect",
-      live: "https://stackconnect.vercel.app/"
-    }
-  },
-
   "balaji": {
     id: "balaji",
     title: "Balaji Training Portal",
@@ -193,6 +150,49 @@ export const projectDetails = {
     links: {
       github: "https://github.com/Eklak-Alam/Training-Project-With-Certificate-Generate-Frontend-Code",
       live: "https://balajitraining.in/"
+    }
+  },
+
+  "stackconnect": {
+    id: "stackconnect",
+    title: "Stack Connect",
+    tagline: "Real-Time Developer Collaboration Ecosystem",
+    category: "Social Network",
+    status: "Open Source",
+
+    coverImage: "/projectImg/stackconnect/stackconnect.png",
+    gallery: [
+      { url: "/projectImg/stackconnect/stackconnec1t.png", caption: "Real-Time Socket.io Chat" },
+      { url: "/projectImg/stackconnect/stackconnect2.png", caption: "Syntax Highlighted Code Sharing" },
+      { url: "/projectImg/stackconnect/stackconnect3.png", caption: "Syntax Highlighted Code Sharing" }
+    ],
+
+    description: "A community platform solving the isolation of remote developers. Unlike standard forums, Stack Connect focuses on real-time interaction, allowing developers to pair program, chat, and share code snippets instantly without efficient syntax highlighting.",
+
+    technicalDecisions: [
+      {
+        title: "WebSockets Implementation",
+        reason: "Implemented Socket.io namespaces to separate chat rooms and global notifications, reducing server load."
+      }
+    ],
+
+    architecture: "Client-Server model with a dedicated WebSocket server layer for ephemeral messaging.",
+
+    impactMetrics: [
+      { label: "Performance", value: "95+", description: "Google Lighthouse Score" },
+      { label: "Latency", value: "<50ms", description: "Message delivery time" }
+    ],
+
+    techStack: {
+      frontend: ["Next.js 14", "TypeScript"],
+      backend: ["Node.js", "Socket.io"],
+      database: ["MongoDB", "Mongoose"],
+      tools: ["Vercel", "ESLint"]
+    },
+
+    links: {
+      github: "https://github.com/Eklak-Alam/Stack-Connect",
+      live: "https://stackconnect.vercel.app/"
     }
   },
 
@@ -300,145 +300,145 @@ export const projectDetails = {
     }
   },
 
-  "blix": {
-    id: "blix",
-    title: "Blix Media Solutions",
-    tagline: "High-Performance Agency Portfolio",
-    category: "Marketing / Digital Agency",
-    status: "Live Production",
+  // "blix": {
+  //   id: "blix",
+  //   title: "Blix Media Solutions",
+  //   tagline: "High-Performance Agency Portfolio",
+  //   category: "Marketing / Digital Agency",
+  //   status: "Live Production",
 
-    coverImage: "/projectImg/blixmedia/blixmedia.png",
-    gallery: [
-      { url: "/projectImg/blixmedia/blixmedia1.png", caption: "GSAP Hero Animation" },
-      { url: "/projectImg/blixmedia/blixmedia2.png", caption: "Interactive Case Study Grid" },
-      { url: "/projectImg/blixmedia/blixmedia3.png", caption: "Lead Gen Dashboard Integration" }
-    ],
+  //   coverImage: "/projectImg/blixmedia/blixmedia.png",
+  //   gallery: [
+  //     { url: "/projectImg/blixmedia/blixmedia1.png", caption: "GSAP Hero Animation" },
+  //     { url: "/projectImg/blixmedia/blixmedia2.png", caption: "Interactive Case Study Grid" },
+  //     { url: "/projectImg/blixmedia/blixmedia3.png", caption: "Lead Gen Dashboard Integration" }
+  //   ],
 
-    description: "A corporate identity platform focused on conversion rate optimization (CRO). Unlike standard portfolios, this site integrates directly with the agency's CRM to funnel leads. The UI features heavy motion design optimized to run at 60fps on low-end devices.",
+  //   description: "A corporate identity platform focused on conversion rate optimization (CRO). Unlike standard portfolios, this site integrates directly with the agency's CRM to funnel leads. The UI features heavy motion design optimized to run at 60fps on low-end devices.",
 
-    technicalDecisions: [
-      {
-        title: "GSAP vs CSS Keyframes",
-        reason: "Utilized GSAP (GreenSock) for timeline-based animations to prevent 'layout thrashing' and ensure sub-pixel rendering accuracy, which is critical for a premium brand image."
-      },
-      {
-        title: "Formik & Yup Validation",
-        reason: "Implemented complex client-side validation schemas to ensure 100% clean data entry into the CRM, reducing the sales team's manual filtering work."
-      }
-    ],
+  //   technicalDecisions: [
+  //     {
+  //       title: "GSAP vs CSS Keyframes",
+  //       reason: "Utilized GSAP (GreenSock) for timeline-based animations to prevent 'layout thrashing' and ensure sub-pixel rendering accuracy, which is critical for a premium brand image."
+  //     },
+  //     {
+  //       title: "Formik & Yup Validation",
+  //       reason: "Implemented complex client-side validation schemas to ensure 100% clean data entry into the CRM, reducing the sales team's manual filtering work."
+  //     }
+  //   ],
 
-    architecture: "Static Site Generation (SSG) via Next.js to ensure immediate Time-to-First-Byte (TTFB), crucial for SEO ranking in the competitive marketing niche.",
+  //   architecture: "Static Site Generation (SSG) via Next.js to ensure immediate Time-to-First-Byte (TTFB), crucial for SEO ranking in the competitive marketing niche.",
 
-    impactMetrics: [
-      { label: "Lead Gen", value: "+40%", description: "Increase in qualified inquiries" },
-      { label: "SEO Score", value: "90+", description: "Ranked page 1 for local keywords" },
-      { label: "Bounce Rate", value: "<15%", description: "Due to engaging micro-interactions" }
-    ],
+  //   impactMetrics: [
+  //     { label: "Lead Gen", value: "+40%", description: "Increase in qualified inquiries" },
+  //     { label: "SEO Score", value: "90+", description: "Ranked page 1 for local keywords" },
+  //     { label: "Bounce Rate", value: "<15%", description: "Due to engaging micro-interactions" }
+  //   ],
 
-    techStack: {
-      frontend: ["React", "GSAP (GreenSock)", "Framer Motion"],
-      forms: ["Formik", "Yup", "Mailchimp API"],
-      analytics: ["Google Analytics 4", "Hotjar"]
-    },
+  //   techStack: {
+  //     frontend: ["React", "GSAP (GreenSock)", "Framer Motion"],
+  //     forms: ["Formik", "Yup", "Mailchimp API"],
+  //     analytics: ["Google Analytics 4", "Hotjar"]
+  //   },
 
-    links: {
-      github: "https://github.com/Eklak-Alam/Blix-Media",
-      live: "https://project-psi-ivory-35.vercel.app/"
-    }
-  },
+  //   links: {
+  //     github: "https://github.com/Eklak-Alam/Blix-Media",
+  //     live: "https://project-psi-ivory-35.vercel.app/"
+  //   }
+  // },
 
-  "deaflink": {
-    id: "deaflink",
-    title: "Deaf Link Assistive Tech",
-    tagline: "AI-Powered Accessibility Bridge",
-    category: "HealthTech / Accessibility",
-    status: "Live Production",
+  // "deaflink": {
+  //   id: "deaflink",
+  //   title: "Deaf Link Assistive Tech",
+  //   tagline: "AI-Powered Accessibility Bridge",
+  //   category: "HealthTech / Accessibility",
+  //   status: "Live Production",
 
-    coverImage: "/projectImg/deaflink/deaflink.png",
-    gallery: [
-      { url: "/projectImg/deaflink/deaflink1.png", caption: "Real-Time Speech Visualization" },
-      { url: "/projectImg/deaflink/deaflink2.png", caption: "Conversation Archive & Export" },
-      { url: "/projectImg/deaflink/deaflink3.png", caption: "High-Contrast Accessibility Mode" }
-    ],
+  //   coverImage: "/projectImg/deaflink/deaflink.png",
+  //   gallery: [
+  //     { url: "/projectImg/deaflink/deaflink1.png", caption: "Real-Time Speech Visualization" },
+  //     { url: "/projectImg/deaflink/deaflink2.png", caption: "Conversation Archive & Export" },
+  //     { url: "/projectImg/deaflink/deaflink3.png", caption: "High-Contrast Accessibility Mode" }
+  //   ],
 
-    description: "A PWA (Progressive Web App) designed to empower the hearing impaired. It performs real-time, low-latency speech-to-text conversion on the client side to ensure privacy. The UI adheres strictly to WCAG 2.1 AA standards for maximum usability.",
+  //   description: "A PWA (Progressive Web App) designed to empower the hearing impaired. It performs real-time, low-latency speech-to-text conversion on the client side to ensure privacy. The UI adheres strictly to WCAG 2.1 AA standards for maximum usability.",
 
-    technicalDecisions: [
-      {
-        title: "Web Speech API (Native)",
-        reason: "Leveraged the browser's native Web Speech API instead of cloud-based APIs (like Google Cloud Speech) to eliminate latency and allow the app to function securely without sending voice data to a server."
-      },
-      {
-        title: "Offline-First PWA",
-        reason: "Built as a PWA with aggressive Service Worker caching, allowing users to use the tool in areas with no internet connection (e.g., subways, basements)."
-      }
-    ],
+  //   technicalDecisions: [
+  //     {
+  //       title: "Web Speech API (Native)",
+  //       reason: "Leveraged the browser's native Web Speech API instead of cloud-based APIs (like Google Cloud Speech) to eliminate latency and allow the app to function securely without sending voice data to a server."
+  //     },
+  //     {
+  //       title: "Offline-First PWA",
+  //       reason: "Built as a PWA with aggressive Service Worker caching, allowing users to use the tool in areas with no internet connection (e.g., subways, basements)."
+  //     }
+  //   ],
 
-    architecture: "Client-heavy architecture. No backend server for voice processing ensures total user privacy (HIPAA compliance ready) and zero server costs.",
+  //   architecture: "Client-heavy architecture. No backend server for voice processing ensures total user privacy (HIPAA compliance ready) and zero server costs.",
 
-    impactMetrics: [
-      { label: "Accuracy", value: "~95%", description: "Speech recognition fidelity" },
-      { label: "Compliance", value: "WCAG 2.1", description: "Fully AA Accessible Certified" },
-      { label: "User Base", value: "10k+", description: "Active monthly users" }
-    ],
+  //   impactMetrics: [
+  //     { label: "Accuracy", value: "~95%", description: "Speech recognition fidelity" },
+  //     { label: "Compliance", value: "WCAG 2.1", description: "Fully AA Accessible Certified" },
+  //     { label: "User Base", value: "10k+", description: "Active monthly users" }
+  //   ],
 
-    techStack: {
-      frontend: ["React.js", "Redux Toolkit", "PWA"],
-      core: ["Web Speech API", "IndexedDB (Local History)"],
-      accessibility: ["Axe Core", "Screen Reader APIs"]
-    },
+  //   techStack: {
+  //     frontend: ["React.js", "Redux Toolkit", "PWA"],
+  //     core: ["Web Speech API", "IndexedDB (Local History)"],
+  //     accessibility: ["Axe Core", "Screen Reader APIs"]
+  //   },
 
-    links: {
-      github: "https://github.com/Eklak-Alam/DeafLink",
-      live: "https://www.deaflink.co/"
-    }
-  },
+  //   links: {
+  //     github: "https://github.com/Eklak-Alam/DeafLink",
+  //     live: "https://www.deaflink.co/"
+  //   }
+  // },
 
-  "jaagosaran": {
-    id: "jaagosaran",
-    title: "Jaago Saran",
-    tagline: "Building the Next Unicorns from (Saran) Bihar",
-    category: "Non-Profit / Startup Incubator",
-    status: "Live & Active",
+  // "jaagosaran": {
+  //   id: "jaagosaran",
+  //   title: "Jaago Saran",
+  //   tagline: "Building the Next Unicorns from (Saran) Bihar",
+  //   category: "Non-Profit / Startup Incubator",
+  //   status: "Live & Active",
 
-    coverImage: "/projectImg/jaagosaran/jaagosaran.png",
-    gallery: [
-      { url: "/projectImg/jaagosaran/jaagosaran1.png", caption: "Founder's Retreat & Community Building" },
-      { url: "/projectImg/jaagosaran/jaagosaran2.png", caption: "Investor Meets & Capital Injection" },
-      { url: "/projectImg/jaagosaran/jaagosaran3.png", caption: "Tech Hackathons & Innovation Hubs" }
-    ],
+  //   coverImage: "/projectImg/jaagosaran/jaagosaran.png",
+  //   gallery: [
+  //     { url: "/projectImg/jaagosaran/jaagosaran1.png", caption: "Founder's Retreat & Community Building" },
+  //     { url: "/projectImg/jaagosaran/jaagosaran2.png", caption: "Investor Meets & Capital Injection" },
+  //     { url: "/projectImg/jaagosaran/jaagosaran3.png", caption: "Tech Hackathons & Innovation Hubs" }
+  //   ],
 
-    description: "A digital platform and registered NGO designed to decentralize innovation in Bihar. It functions as a grassroots growth engine, connecting ambitious founders from Tier-2 cities with global mentors, capital, and a military-grade 12-week accelerator program.",
+  //   description: "A digital platform and registered NGO designed to decentralize innovation in Bihar. It functions as a grassroots growth engine, connecting ambitious founders from Tier-2 cities with global mentors, capital, and a military-grade 12-week accelerator program.",
 
-    technicalDecisions: [
-      {
-        title: "Scalable Event Architecture",
-        reason: "Designed the platform to handle high-traffic registration waves for state-wide events like the 'Startup Mahakumbh', ensuring zero downtime during critical application windows."
-      },
-      {
-        title: "Protocol-Based Resource Access",
-        reason: "Implemented a tiered access system (Strategy, Capital, and Network Protocols) to streamline the flow of resources, ensuring founders get specific support based on their startup stage."
-      }
-    ],
+  //   technicalDecisions: [
+  //     {
+  //       title: "Scalable Event Architecture",
+  //       reason: "Designed the platform to handle high-traffic registration waves for state-wide events like the 'Startup Mahakumbh', ensuring zero downtime during critical application windows."
+  //     },
+  //     {
+  //       title: "Protocol-Based Resource Access",
+  //       reason: "Implemented a tiered access system (Strategy, Capital, and Network Protocols) to streamline the flow of resources, ensuring founders get specific support based on their startup stage."
+  //     }
+  //   ],
 
-    architecture: "Community-driven ecosystem platform. Integrates a content management system for event updates with a secure backend for startup applications and investor matching.",
+  //   architecture: "Community-driven ecosystem platform. Integrates a content management system for event updates with a secure backend for startup applications and investor matching.",
 
-    impactMetrics: [
-      { label: "Impact", value: "10k+", description: "Lives impacted in Saran" },
-      { label: "Portfolio", value: "50+", description: "Ventures Backed" },
-      { label: "Network", value: "100+", description: "Global Mentors Onboarded" }
-    ],
+  //   impactMetrics: [
+  //     { label: "Impact", value: "10k+", description: "Lives impacted in Saran" },
+  //     { label: "Portfolio", value: "50+", description: "Ventures Backed" },
+  //     { label: "Network", value: "100+", description: "Global Mentors Onboarded" }
+  //   ],
 
-    techStack: {
-      frontend: ["React.js", "Tailwind CSS", "Framer Motion"],
-      core: ["Context API", "GSAP (Animations)"],
-    },
+  //   techStack: {
+  //     frontend: ["React.js", "Tailwind CSS", "Framer Motion"],
+  //     core: ["Context API", "GSAP (Animations)"],
+  //   },
 
-    links: {
-      github: "https://github.com/Eklak-Alam/", // Placeholder based on your pattern
-      live: "https://www.jaagosaran.vercel.app/" // Placeholder
-    }
-  }
+  //   links: {
+  //     github: "https://github.com/Eklak-Alam/", // Placeholder based on your pattern
+  //     live: "https://www.jaagosaran.vercel.app/" // Placeholder
+  //   }
+  // }
 };
 
 export const allProjects = Object.values(projectDetails);
