@@ -6,6 +6,7 @@ import DevOpsProjects from "@/components/landing/DevOpsProjects";
 import Hero from "@/components/landing/Hero";
 import Projects from "@/components/landing/Projects";
 import TechStack from "@/components/landing/TechStack";
+import TestimonialCarousel from "@/components/landing/TestimonialCarousel";
 
 export default function Home() {
   return (
@@ -28,9 +29,13 @@ export default function Home() {
         <Projects />
       </section>
 
+      <section id="testimonial">
+        <TestimonialCarousel />
+      </section>
+{/* 
       <section id="devops">
         <DevOpsProjects />
-      </section>
+      </section> */}
 
       <section id="contact">
         <Contact />

@@ -1,202 +1,138 @@
-"use client";
+'use client';
 
-import { useState, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-import { ArrowUpRight, Github, ChevronDown } from "lucide-react";
-import { allProjects } from "@/data/projects";
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { ArrowUpRight, ChevronDown, Github } from 'lucide-react';
+// IMPORT YOUR DATA HERE (Adjust path as needed)
+import { allProjects } from '@/data/projects'; 
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+// Animation variants for smooth scroll reveal
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2 }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 40 },
+  show: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { type: "spring", stiffness: 80, damping: 20 } 
+  }
+};
 
 export default function Projects() {
-  const sectionRef = useRef(null);
-  
-  // STATE CHANGE: Now we track the exact number of projects to show on mobile (starts at 3)
-  const [visibleCount, setVisibleCount] = useState(3);
-
-  useGSAP(() => {
-    let mm = gsap.matchMedia();
-
-    mm.add("(min-width: 768px)", () => {
-      const wrappers = gsap.utils.toArray(".card-sticky-wrapper");
-
-      wrappers.forEach((wrapper, index) => {
-        if (index === wrappers.length - 1) return;
-
-        const innerCard = wrapper.querySelector(".card-inner");
-
-        ScrollTrigger.create({
-          trigger: wrappers[index + 1],
-          start: "top bottom", 
-          end: "top top+=100", 
-          scrub: 0.5,
-          animation: gsap.to(innerCard, {
-            scale: 0.94,
-            opacity: 0.4,
-            y: -25,
-            transformOrigin: "top center",
-            ease: "power2.inOut",
-          }),
-        });
-      });
-    });
-
-    return () => mm.revert();
-  }, { scope: sectionRef });
+  const [visibleCount, setVisibleCount] = useState(4);
+  const visibleProjects = allProjects.slice(0, visibleCount);
 
   return (
-    <section 
-      id="work" 
-      ref={sectionRef} 
-      className="relative w-full bg-background py-16 md:pt-24 overflow-visible"
-    >
-      <style dangerouslySetInnerHTML={{__html: `
-        @media (min-width: 768px) {
-          .desktop-sticky {
-            position: sticky;
-            top: var(--sticky-top);
-          }
-        }
-      `}} />
-
-      <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
+    <section id="work" className="relative w-full bg-[var(--color-background)] py-20 md:py-32 overflow-hidden font-sans">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
         
         {/* ================= HEADER ================= */}
-        <div className="mb-10 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter text-foreground mb-3">
-            Selected <span className="text-primary">Work.</span>
+        <div className="mb-16 md:mb-24 flex flex-col items-center text-center relative">
+          <div className="hidden md:flex gap-2 mb-6 opacity-40">
+            <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-foreground)]"></div>
+            <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-foreground)]"></div>
+            <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-foreground)]"></div>
+          </div>
+          
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif font-medium tracking-tight text-[var(--color-foreground)]">
+            Selected <span className="text-[#e8751a]">works</span>
           </h2>
-          <p className="text-sm md:text-base text-muted font-medium max-w-xl">
-            A look at the systems and platforms I've built. Scroll to explore.
-          </p>
         </div>
 
-        {/* ================= CARDS CONTAINER ================= */}
-        <div className="relative flex flex-col pb-4 md:pb-[10vh]">
-          {allProjects.map((project, index) => {
-            const isEven = index % 2 === 0;
-            
-            const layoutClass = isEven ? "lg:flex-row" : "lg:flex-row-reverse";
-            
-            const themeClass = isEven 
-              ? "bg-surface border-border/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)]" 
-              : "bg-foreground border-foreground shadow-2xl";
-
-            const titleColor = isEven ? "text-foreground" : "text-background";
-            const mutedTextClass = isEven ? "text-foreground/75" : "text-background/80"; 
-            const numberClass = isEven ? "text-foreground/10" : "text-background/10"; 
-
-            const btnBaseClass = isEven
-              ? "bg-foreground text-background"
-              : "bg-background text-foreground";
-
-            const imgWrapperBg = isEven 
-              ? "bg-foreground/[0.03] border border-border/40" 
-              : "bg-background/10";
-              
-            const stickyTop = `calc(5rem + ${index * 1.5}rem)`;
-
-            // MOBILE DISPLAY LOGIC: 
-            // Hide the card if its index is greater than or equal to our visibleCount (only affects mobile)
-            const isMobileHidden = index >= visibleCount;
-            const mobileDisplayClass = isMobileHidden ? "hidden md:block" : "block";
-
-            return (
+        {/* ================= GRID LAYOUT ================= */}
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-x-12 md:gap-y-20"
+        >
+          {visibleProjects.map((project) => (
+            <motion.div 
+              key={project.id} 
+              variants={itemVariants}
+              className="group flex flex-col w-full cursor-pointer"
+            >
+              {/* IMAGE WRAPPER - Container stays still */}
               <div 
-                key={project.id} 
-                className={`card-sticky-wrapper relative desktop-sticky w-full mb-8 md:mb-20 ${mobileDisplayClass}`}
-                style={{ "--sticky-top": stickyTop }}
+                className="relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden mb-6"
+                style={{ backgroundColor: project.bgColor || "#a3b5c1" }}
               >
-                <div className={`card-inner w-full border rounded-[1.5rem] md:rounded-[2rem] p-6 sm:p-8 md:p-10 flex flex-col ${layoutClass} gap-6 md:gap-12 origin-top ${themeClass}`}>
-                  
-                  {/* === MINIMALIST NUMBER SIDE === */}
-                  <div className={`hidden lg:flex relative w-full lg:w-[45%] h-[400px] rounded-2xl flex-col items-start justify-between p-8 shrink-0 overflow-hidden ${imgWrapperBg}`}>
-                    <div className={`absolute -bottom-10 -right-4 text-[320px] font-black leading-none select-none pointer-events-none ${numberClass}`}>
-                      0{index + 1}
-                    </div>
-                  </div>
-
-                  {/* === CONTENT SIDE === */}
-                  <div className="w-full lg:w-[55%] flex flex-col justify-center py-2 relative z-10">
-                    
-                    <span className={`text-sm md:text-base font-bold font-mono mb-3 lg:mb-4 block opacity-50 ${titleColor}`}>
-                      0{index + 1}
-                    </span>
-
-                    <h3 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight mb-3 lg:mb-4 ${titleColor}`}>
-                      {project.title}
-                    </h3>
-                    
-                    {project.tagline && (
-                      <h4 className={`text-base md:text-lg font-bold mb-3 lg:mb-4 ${mutedTextClass}`}>
-                        {project.tagline}
-                      </h4>
-                    )}
-                    
-                    <p className={`text-sm md:text-base font-medium leading-relaxed mb-6 md:mb-8 max-w-lg ${mutedTextClass}`}>
-                      {project.description}
-                    </p>
-
-                    {/* ACTION BUTTONS */}
-                    <div className="flex flex-wrap items-center gap-4 md:gap-6 mt-auto">
-                      <a 
-                        href={project.links.live}
-                        target="_blank"
-                        rel="noreferrer"
-                        className={`group relative inline-flex items-center gap-2 px-5 py-2.5 md:px-6 md:py-3 text-sm md:text-base font-bold rounded-full overflow-hidden transition-all duration-300 active:scale-95 shadow-sm ${btnBaseClass}`}
-                      >
-                        <span className="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-300 ease-out group-hover:h-full"></span>
-                        
-                        <span className="relative z-10 flex items-center gap-2 transition-colors duration-300 group-hover:text-primary-text">
-                          View Project
-                          <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                        </span>
-                      </a>
-
-                      {project.links.github && (
-                        <a 
-                          href={project.links.github}
-                          target="_blank"
-                          rel="noreferrer"
-                          className={`group relative inline-flex items-center gap-2 py-2 text-sm md:text-base font-bold transition-opacity hover:opacity-100 ${mutedTextClass}`}
-                        >
-                          <Github className="w-4 h-4 md:w-5 md:h-5 group-hover:scale-110 transition-transform" />
-                          <span className="relative overflow-hidden pb-1">
-                            Source
-                            <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-current transition-all duration-300 ease-out group-hover:w-full"></span>
-                          </span>
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                  
+                {/* Image scales on hover */}
+                <div className="absolute inset-0 w-full h-full p-8 md:p-12 transition-transform duration-700 ease-out group-hover:scale-105">
+                  <img 
+                    src={project.coverImage} 
+                    alt={project.title}
+                    className="w-full h-full object-cover rounded-xl shadow-lg"
+                  />
                 </div>
               </div>
-            );
-          })}
 
-          {/* ================= LOAD MORE BUTTON (MOBILE ONLY) ================= */}
-          {/* Only shows on mobile (md:hidden) AND only if there are more projects to show */}
-          {visibleCount < allProjects.length && (
-            <div className="w-full flex justify-center mt-2 md:hidden">
-              <button
-                // Increments the count by 3 every time it is clicked
-                onClick={() => setVisibleCount(prev => prev + 3)}
-                className="group relative inline-flex items-center gap-2 px-8 py-3.5 text-sm font-bold rounded-full overflow-hidden transition-all duration-300 active:scale-95 border border-border bg-surface text-foreground shadow-sm"
-              >
-                <span className="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-300 ease-out group-hover:h-full"></span>
-                <span className="relative z-10 flex items-center gap-2 transition-colors duration-300 group-hover:text-primary-text">
-                  Load More Projects
-                  <ChevronDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+              {/* CARD METADATA */}
+              <div className="flex items-center justify-between border-b border-[var(--color-border)]/50 pb-4 mb-4">
+                <div className="text-[var(--color-foreground)] text-sm md:text-base font-serif">
+                  {project.tagline}
+                </div>
+              </div>
+
+              {/* CARD DETAILS */}
+              <div className="flex flex-col flex-grow">
+                <span className="text-[#e8751a] text-xs font-bold tracking-widest mb-2 uppercase">
+                  {project.category}
                 </span>
-              </button>
-            </div>
-          )}
+                
+                <h3 className="text-2xl md:text-3xl font-serif text-[var(--color-foreground)] font-medium leading-tight mb-6 group-hover:text-[var(--color-primary)] transition-colors">
+                  {project.title}
+                </h3>
 
-        </div>
+                {/* Minimalist Action Links */}
+                <div className="flex items-center gap-6 mt-auto pt-2">
+                  {project.links?.live && (
+                    <a 
+                      href={project.links.live}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-1.5 text-sm font-semibold text-[var(--color-foreground)] hover:text-[#e8751a] transition-colors"
+                    >
+                      View Project <ArrowUpRight size={16} strokeWidth={2.5} />
+                    </a>
+                  )}
+                  {project.links?.github && (
+                    <a 
+                      href={project.links.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-1.5 text-sm font-semibold text-[var(--color-muted)] hover:text-[var(--color-foreground)] transition-colors"
+                    >
+                      <Github size={16} /> Source
+                    </a>
+                  )}
+                </div>
+              </div>
+
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* ================= LOAD MORE BUTTON ================= */}
+        {visibleCount < allProjects.length && (
+          <div className="w-full flex justify-center mt-16">
+            <button
+              onClick={() => setVisibleCount(prev => prev + 4)}
+              className="group flex items-center gap-2 px-8 py-3.5 text-sm font-bold rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-foreground)] hover:bg-[var(--color-foreground)] hover:text-[var(--color-background)] transition-all duration-300 active:scale-95 shadow-sm"
+            >
+              Load More
+              <ChevronDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
+            </button>
+          </div>
+        )}
+
       </div>
     </section>
   );

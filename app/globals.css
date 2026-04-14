@@ -6,6 +6,7 @@
   --color-brand-light: rgb(157, 192, 139);
   --color-brand-primary: rgb(96, 153, 102);
   --color-brand-dark: rgb(64, 81, 59);
+  --color-brand-accent: #e8751a; /* <-- Added your God Mode Orange */
 
   /* 2. SEMANTIC UI MAPPING */
   --color-background: var(--color-brand-lightest);
@@ -19,6 +20,8 @@
   --color-primary-hover: var(--color-brand-dark);
   --color-primary-text: var(--color-brand-lightest);
   --color-ring: var(--color-brand-primary);
+  
+  --color-accent: var(--color-brand-accent); /* <-- Map it to 'accent' */
 }
 
 @layer base {

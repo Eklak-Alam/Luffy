@@ -6,12 +6,13 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { ArrowUpRight } from "lucide-react"; // Imported the 45-degree arrow
 
 const navLinks = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
   { name: "Work", href: "#projects" },
-  { name: "Cloud", href: "#devops" },
+  { name: "Testimonial", href: "#testimonial" }, // Changed Cloud to Testimonial
   { name: "Contact", href: "#contact" },
 ];
 
@@ -107,16 +108,17 @@ export default function Navbar() {
             </nav>
 
             {/* 3. RIGHT: CTA & Mobile Toggle */}
-            <div className="flex-1 flex justify-end items-center gap-4 nav-item">
+            <div className="flex-1 flex justify-end items-center gap-6 nav-item">
+              
+              {/* Changed from heavy button to clean text link with 45-degree arrow */}
               <a
-                href="#contact"
-                onClick={() => setActiveLink("#contact")}
-                className="group relative hidden md:flex px-6 py-2.5 rounded-full bg-foreground text-background text-xs font-black uppercase tracking-widest overflow-hidden transition-transform duration-300 active:scale-95"
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group hidden md:flex items-center gap-1.5 text-sm font-bold uppercase tracking-widest text-foreground hover:text-primary transition-colors duration-300"
               >
-                <span className="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-300 ease-out group-hover:h-full"></span>
-                <span className="relative z-10 transition-colors duration-300 group-hover:text-primary-text">
-                  Let's Chat
-                </span>
+                Resume
+                <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
 
               {/* SMOOTH ANIMATED HAMBURGER MENU */}
@@ -142,7 +144,6 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: "-100%" }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} 
-            // Removed h-screen and overflow-hidden so the body underneath can scroll and trigger the close
             className="fixed inset-0 z-40 bg-background flex flex-col pt-32 px-8 md:hidden"
           >
             <nav className="flex flex-col gap-6">
@@ -179,17 +180,18 @@ export default function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.4 }}
-              className="mt-auto pb-12"
+              className="mt-auto pb-16 pt-10 border-t border-border/50"
             >
+              {/* Changed from heavy button to clean text link with 45-degree arrow for mobile too */}
               <a
-                href="#contact"
-                onClick={() => {
-                  setIsOpen(false);
-                  setActiveLink("#contact");
-                }}
-                className="inline-flex items-center justify-center w-full py-5 rounded-full bg-foreground text-background text-lg font-bold uppercase tracking-widest hover:bg-primary transition-colors shadow-xl"
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
+                className="group flex items-center gap-2 text-2xl font-extrabold uppercase tracking-widest text-foreground hover:text-primary transition-colors w-fit"
               >
-                Start a Project
+                Resume
+                <ArrowUpRight className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
               </a>
             </motion.div>
           </motion.div>

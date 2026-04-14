@@ -131,7 +131,8 @@ export default function Contact() {
         <div className="mb-16 md:mb-24">
           <h2 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-foreground leading-tight">
             Let's <br className="hidden sm:block" />
-            <span className="text-primary">Connect.</span>
+            {/* Added God Mode Orange Here */}
+            <span className="text-[#e8751a]">Connect.</span>
           </h2>
         </div>
 
@@ -141,8 +142,9 @@ export default function Contact() {
           <div className="lg:col-span-6 relative z-10">
             
             <div className="mb-8 flex items-center gap-4">
-               <span className="h-px w-8 bg-primary"></span>
-               <h3 className="text-xs font-bold uppercase tracking-widest text-primary">Send Transmission</h3>
+               {/* Added God Mode Orange Here */}
+               <span className="h-px w-8 bg-[#e8751a]"></span>
+               <h3 className="text-xs font-bold uppercase tracking-widest text-[#e8751a]">Send Transmission</h3>
             </div>
             
             <AnimatePresence mode="wait">
@@ -158,7 +160,8 @@ export default function Contact() {
                   <p className="text-base md:text-lg text-muted font-medium mb-8 max-w-sm">
                     I'll review your transmission and get back to you within 24 hours.
                   </p>
-                  <button onClick={() => setStatus("idle")} className="text-sm font-bold uppercase tracking-widest text-primary hover:text-foreground transition-colors border-b-2 border-primary hover:border-foreground pb-1">
+                  {/* Added God Mode Orange Here */}
+                  <button onClick={() => setStatus("idle")} className="text-sm font-bold uppercase tracking-widest text-[#e8751a] hover:text-foreground transition-colors border-b-2 border-[#e8751a] hover:border-foreground pb-1">
                     Send Another
                   </button>
                 </motion.div>
@@ -175,11 +178,11 @@ export default function Contact() {
                   <div className="relative group">
                     <input 
                       type="text" name="name" required value={formData.name} onChange={handleInputChange}
-                      className={`w-full bg-transparent border-0 border-b ${errors.name ? 'border-red-500' : 'border-border/60'} text-base md:text-lg text-foreground font-medium py-3 outline-none focus:ring-0 ${errors.name ? 'focus:border-red-500' : 'focus:border-primary'} transition-colors peer placeholder:text-transparent`}
+                      className={`w-full bg-transparent border-0 border-b ${errors.name ? 'border-red-500' : 'border-border/60'} text-base md:text-lg text-foreground font-medium py-3 outline-none focus:ring-0 ${errors.name ? 'focus:border-red-500' : 'focus:border-[#e8751a]'} transition-colors peer placeholder:text-transparent`}
                       placeholder="Name"
                     />
                     <label className={`absolute left-0 top-3 text-base md:text-lg font-medium pointer-events-none peer-focus:-top-5 peer-focus:text-[10px] peer-focus:uppercase peer-focus:tracking-widest peer-valid:-top-5 peer-valid:text-[10px] peer-valid:uppercase peer-valid:tracking-widest transition-all duration-300
-                      ${errors.name ? 'text-red-500 peer-focus:text-red-500 peer-valid:text-red-500' : 'text-muted/50 peer-focus:text-primary peer-valid:text-muted'}
+                      ${errors.name ? 'text-red-500 peer-focus:text-red-500 peer-valid:text-red-500' : 'text-muted/50 peer-focus:text-[#e8751a] peer-valid:text-muted'}
                     `}>
                       Full Name {errors.name && <span className="font-bold ml-1 tracking-normal">— Required</span>}
                     </label>
@@ -189,11 +192,11 @@ export default function Contact() {
                   <div className="relative group">
                     <input 
                       type="tel" name="phone" required value={formData.phone} onChange={handleInputChange}
-                      className={`w-full bg-transparent border-0 border-b ${errors.phone ? 'border-red-500' : 'border-border/60'} text-base md:text-lg text-foreground font-medium py-3 outline-none focus:ring-0 ${errors.phone ? 'focus:border-red-500' : 'focus:border-primary'} transition-colors peer placeholder:text-transparent`}
+                      className={`w-full bg-transparent border-0 border-b ${errors.phone ? 'border-red-500' : 'border-border/60'} text-base md:text-lg text-foreground font-medium py-3 outline-none focus:ring-0 ${errors.phone ? 'focus:border-red-500' : 'focus:border-[#e8751a]'} transition-colors peer placeholder:text-transparent`}
                       placeholder="Phone"
                     />
                     <label className={`absolute left-0 top-3 text-base md:text-lg font-medium pointer-events-none peer-focus:-top-5 peer-focus:text-[10px] peer-focus:uppercase peer-focus:tracking-widest peer-valid:-top-5 peer-valid:text-[10px] peer-valid:uppercase peer-valid:tracking-widest transition-all duration-300
-                      ${errors.phone ? 'text-red-500 peer-focus:text-red-500 peer-valid:text-red-500' : 'text-muted/50 peer-focus:text-primary peer-valid:text-muted'}
+                      ${errors.phone ? 'text-red-500 peer-focus:text-red-500 peer-valid:text-red-500' : 'text-muted/50 peer-focus:text-[#e8751a] peer-valid:text-muted'}
                     `}>
                       Phone Number {errors.phone && <span className="font-bold ml-1 tracking-normal">— Required</span>}
                     </label>
@@ -203,11 +206,11 @@ export default function Contact() {
                   <div className="relative group">
                     <input 
                       type="email" name="email" required value={formData.email} onChange={handleInputChange}
-                      className={`w-full bg-transparent border-0 border-b ${errors.email ? 'border-red-500' : 'border-border/60'} text-base md:text-lg text-foreground font-medium py-3 outline-none focus:ring-0 ${errors.email ? 'focus:border-red-500' : 'focus:border-primary'} transition-colors peer placeholder:text-transparent`}
+                      className={`w-full bg-transparent border-0 border-b ${errors.email ? 'border-red-500' : 'border-border/60'} text-base md:text-lg text-foreground font-medium py-3 outline-none focus:ring-0 ${errors.email ? 'focus:border-red-500' : 'focus:border-[#e8751a]'} transition-colors peer placeholder:text-transparent`}
                       placeholder="Email"
                     />
                     <label className={`absolute left-0 top-3 text-base md:text-lg font-medium pointer-events-none peer-focus:-top-5 peer-focus:text-[10px] peer-focus:uppercase peer-focus:tracking-widest peer-valid:-top-5 peer-valid:text-[10px] peer-valid:uppercase peer-valid:tracking-widest transition-all duration-300
-                      ${errors.email ? 'text-red-500 peer-focus:text-red-500 peer-valid:text-red-500' : 'text-muted/50 peer-focus:text-primary peer-valid:text-muted'}
+                      ${errors.email ? 'text-red-500 peer-focus:text-red-500 peer-valid:text-red-500' : 'text-muted/50 peer-focus:text-[#e8751a] peer-valid:text-muted'}
                     `}>
                       Email Address {errors.email && <span className="font-bold ml-1 tracking-normal">— Required</span>}
                     </label>
@@ -220,15 +223,15 @@ export default function Contact() {
                     )}
                     <div 
                       onClick={() => setDropdownOpen(!dropdownOpen)}
-                      className={`w-full bg-transparent border-0 border-b ${errors.subject ? 'border-red-500' : dropdownOpen ? "border-primary" : "border-border/60"} text-base md:text-lg font-medium py-3 outline-none cursor-pointer flex justify-between items-center transition-colors relative z-40`}
+                      className={`w-full bg-transparent border-0 border-b ${errors.subject ? 'border-red-500' : dropdownOpen ? "border-[#e8751a]" : "border-border/60"} text-base md:text-lg font-medium py-3 outline-none cursor-pointer flex justify-between items-center transition-colors relative z-40`}
                     >
                       <span className={formData.subject ? "text-foreground" : errors.subject ? "text-red-500" : "text-transparent select-none"}>
                         {formData.subject || "Subject"}
                       </span>
-                      <ChevronDown className={`transition-transform duration-300 w-4 h-4 md:w-5 md:h-5 ${errors.subject ? 'text-red-500' : dropdownOpen ? "rotate-180 text-primary" : "text-muted"}`} />
+                      <ChevronDown className={`transition-transform duration-300 w-4 h-4 md:w-5 md:h-5 ${errors.subject ? 'text-red-500' : dropdownOpen ? "rotate-180 text-[#e8751a]" : "text-muted"}`} />
                     </div>
                     <label className={`absolute left-0 pointer-events-none transition-all duration-300 z-40 
-                      ${errors.subject ? 'text-red-500 font-bold -top-5 text-[10px] uppercase tracking-widest' : formData.subject || dropdownOpen ? "-top-5 text-[10px] text-primary uppercase tracking-widest font-bold" : "top-3 text-base md:text-lg text-muted/50 font-medium"}
+                      ${errors.subject ? 'text-red-500 font-bold -top-5 text-[10px] uppercase tracking-widest' : formData.subject || dropdownOpen ? "-top-5 text-[10px] text-[#e8751a] uppercase tracking-widest font-bold" : "top-3 text-base md:text-lg text-muted/50 font-medium"}
                     `}>
                       Purpose of Inquiry {errors.subject && <span className="font-bold ml-1 tracking-normal">— Required</span>}
                     </label>
@@ -246,7 +249,7 @@ export default function Contact() {
                             <div 
                               key={i}
                               onClick={() => handleSubjectSelect(sub)}
-                              className={`px-5 py-3 text-sm md:text-base font-bold cursor-pointer transition-colors ${formData.subject === sub ? "bg-primary/10 text-primary" : "text-foreground hover:bg-background hover:text-primary"}`}
+                              className={`px-5 py-3 text-sm md:text-base font-bold cursor-pointer transition-colors ${formData.subject === sub ? "bg-[#e8751a]/10 text-[#e8751a]" : "text-foreground hover:bg-background hover:text-[#e8751a]"}`}
                             >
                               {sub}
                             </div>
@@ -260,11 +263,11 @@ export default function Contact() {
                   <div className="relative group">
                     <textarea 
                       name="message" required rows="1" value={formData.message} onChange={handleInputChange}
-                      className={`w-full bg-transparent border-0 border-b ${errors.message ? 'border-red-500' : 'border-border/60'} text-base md:text-lg text-foreground font-medium py-3 outline-none focus:ring-0 ${errors.message ? 'focus:border-red-500' : 'focus:border-primary'} transition-colors peer placeholder:text-transparent resize-y min-h-[40px]`}
+                      className={`w-full bg-transparent border-0 border-b ${errors.message ? 'border-red-500' : 'border-border/60'} text-base md:text-lg text-foreground font-medium py-3 outline-none focus:ring-0 ${errors.message ? 'focus:border-red-500' : 'focus:border-[#e8751a]'} transition-colors peer placeholder:text-transparent resize-y min-h-[40px]`}
                       placeholder="Message"
                     />
                     <label className={`absolute left-0 top-3 text-base md:text-lg font-medium pointer-events-none peer-focus:-top-5 peer-focus:text-[10px] peer-focus:uppercase peer-focus:tracking-widest peer-valid:-top-5 peer-valid:text-[10px] peer-valid:uppercase peer-valid:tracking-widest transition-all duration-300
-                      ${errors.message ? 'text-red-500 peer-focus:text-red-500 peer-valid:text-red-500' : 'text-muted/50 peer-focus:text-primary peer-valid:text-muted'}
+                      ${errors.message ? 'text-red-500 peer-focus:text-red-500 peer-valid:text-red-500' : 'text-muted/50 peer-focus:text-[#e8751a] peer-valid:text-muted'}
                     `}>
                       Project Details {errors.message && <span className="font-bold ml-1 tracking-normal">— Required</span>}
                     </label>
@@ -284,11 +287,11 @@ export default function Contact() {
                     >
                       {/* The Fill Animation Layer - ONLY active when form is fully valid */}
                       {isFormValid && status !== "loading" && (
-                        <span className="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-300 ease-out group-hover:h-full z-0" />
+                        <span className="absolute bottom-0 left-0 w-full h-0 bg-[#e8751a] transition-all duration-300 ease-out group-hover:h-full z-0" />
                       )}
 
                       {/* Button Content */}
-                      <div className={`relative z-10 flex items-center justify-between w-full md:w-auto md:gap-4 transition-colors duration-300 ${isFormValid ? "group-hover:text-primary-text" : ""}`}>
+                      <div className={`relative z-10 flex items-center justify-between w-full md:w-auto md:gap-4 transition-colors duration-300 ${isFormValid ? "group-hover:text-white" : ""}`}>
                         {status === "loading" ? (
                           <> TRANSMITTING <Loader2 size={20} className="animate-spin ml-3" /> </>
                         ) : (
@@ -319,17 +322,21 @@ export default function Contact() {
                     href={link.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center justify-between p-4 rounded-2xl bg-surface border border-border/50 hover:border-primary hover:bg-primary/5 transition-all group"
+                    // Added Orange Hover state to borders/backgrounds here
+                    className="flex items-center justify-between p-4 rounded-2xl bg-surface border border-border/50 hover:border-[#e8751a] hover:bg-[#e8751a]/5 transition-all group"
                   >
                     <div className="flex items-center gap-4">
-                      <div className="text-muted group-hover:text-primary transition-colors duration-300">
+                      {/* Added Orange Hover state to Icon */}
+                      <div className="text-muted group-hover:text-[#e8751a] transition-colors duration-300">
                         {link.icon}
                       </div>
-                      <span className="text-lg md:text-xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors duration-300">
+                      {/* Added Orange Hover state to Text */}
+                      <span className="text-lg md:text-xl font-bold tracking-tight text-foreground group-hover:text-[#e8751a] transition-colors duration-300">
                         {link.name}
                       </span>
                     </div>
-                    <ArrowUpRight className="text-muted group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all w-5 h-5" />
+                    {/* Added Orange Hover state to Arrow */}
+                    <ArrowUpRight className="text-muted group-hover:text-[#e8751a] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all w-5 h-5" />
                   </a>
                 ))}
               </div>
@@ -337,14 +344,16 @@ export default function Contact() {
 
             {/* Location */}
             <div className="pt-4 flex items-start gap-4 text-muted">
+              {/* Added Orange to Map Pin and Border */}
               <div className="w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center shrink-0">
-                <MapPin className="w-4 h-4 text-primary" />
+                <MapPin className="w-4 h-4 text-[#e8751a]" />
               </div>
               <div>
                 <p className="text-[10px] font-bold uppercase tracking-widest text-muted mb-1">Base of Operations</p>
                 <div className="flex flex-col gap-0.5">
-                  <span className="text-base md:text-lg font-bold text-foreground">Chapra, Bihar, India</span>
-                  <span className="text-[10px] md:text-xs font-mono text-primary font-bold tracking-widest">25.7796° N, 84.7499° E</span>
+                  <span className="text-base md:text-lg font-bold text-foreground">India</span>
+                  {/* Added Orange to Coordinates */}
+                  {/* <span className="text-[10px] md:text-xs font-mono text-[#e8751a] font-bold tracking-widest">25.7796° N, 84.7499° E</span> */}
                 </div>
               </div>
             </div>

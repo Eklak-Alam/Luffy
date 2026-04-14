@@ -1,128 +1,156 @@
-import { Layers, Cpu, Network, Sparkles, ArrowDownRight } from "lucide-react";
+"use client";
+
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+// Register ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
+  const aboutRef = useRef(null);
+
+  useGSAP(() => {
+    // Cinematic fade-up for the intro text
+    gsap.fromTo(
+      ".about-reveal",
+      { y: 50, opacity: 0 },
+      { 
+        y: 0, 
+        opacity: 1, 
+        duration: 1.2, 
+        stagger: 0.2, 
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: aboutRef.current,
+          start: "top 75%",
+        }
+      }
+    );
+
+    // Stagger the horizontal lines and rows for a "building" effect
+    gsap.fromTo(
+      ".domain-row",
+      { opacity: 0, x: -20 },
+      { 
+        opacity: 1, 
+        x: 0, 
+        duration: 1, 
+        stagger: 0.15, 
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".domain-container",
+          start: "top 80%",
+        }
+      }
+    );
+  }, { scope: aboutRef });
+
   const domains = [
     {
       id: "01",
       title: "The Interface",
       subtitle: "Frontend Engineering",
-      description: "Crafting pixel-perfect, highly kinetic interfaces. I treat the DOM like a canvas, ensuring every interaction feels instant and premium.",
-      tech: ["React", "Next.js", "Tailwind CSS", "TypeScript"],
-      icon: <Layers className="w-5 h-5 text-primary" />,
+      description: "Pixel-perfect, highly kinetic interfaces. Treating the DOM like a canvas to ensure every interaction feels instant and premium.",
+      tech: "React • Next.js • Tailwind CSS • TypeScript • GSAP",
     },
     {
       id: "02",
       title: "The Engine",
       subtitle: "System Architecture",
-      description: "Designing resilient, high-availability backends. I build microservices capable of handling heavy throughput without breaking a sweat.",
-      tech: ["Java", "Spring Boot", "Node.js"],
-      icon: <Cpu className="w-5 h-5 text-primary" />,
+      description: "Resilient, high-throughput microservices. Building secure backend environments that scale without creating bottlenecks.",
+      tech: "Node.js • Java • Spring Boot • PostgreSQL • Redis",
     },
     {
       id: "03",
       title: "The Infrastructure",
       subtitle: "DevOps & Cloud",
-      description: "Automating zero-downtime deployment pipelines. I architect scalable cloud environments so the code ships fast and never goes down.",
-      tech: ["AWS", "Docker", "Kubernetes", "Terraform", "Jenkins"],
-      icon: <Network className="w-5 h-5 text-primary" />,
+      description: "Automated pipelines and robust cloud architecture. Ensuring code ships rapidly and the ecosystem never goes offline.",
+      tech: "AWS • Docker • Kubernetes • Terraform • CI/CD",
     },
     {
       id: "04",
       title: "The Intelligence",
       subtitle: "AI & LLM Integration",
-      description: "Embedding intelligent agents and robust RAG architectures directly into the product ecosystem to give applications a real brain.",
-      tech: ["Python", "FastAPI", "LangChain"],
-      icon: <Sparkles className="w-5 h-5 text-primary" />,
+      description: "Intelligent agents and RAG architectures embedded directly into the product ecosystem, giving applications a real brain.",
+      tech: "Python • FastAPI • LangChain • Vector Databases",
     }
   ];
 
   return (
-    <section id="about" className="py-16 md:py-32 relative">
-      <div className="max-w-[90rem] mx-auto px-5 sm:px-8 lg:px-12 w-full">
+    <section 
+      id="about" 
+      ref={aboutRef}
+      className="py-24 md:py-48 relative bg-[var(--color-background)]"
+    >
+      <div className="max-w-[90rem] mx-auto px-6 sm:px-8 lg:px-12 w-full">
         
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-24">
-          
-          {/* LEFT COLUMN: The Philosophy */}
-          <div className="lg:w-5/12 relative">
-            <div className="lg:sticky lg:top-20">
-              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-border/60 bg-surface mb-6 sm:mb-8">
-                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                <span className="text-xs sm:text-sm font-semibold text-muted tracking-wide uppercase">
-                  Engineering Philosophy
-                </span>
-              </div>
-              
-              <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-foreground leading-[1.1] mb-6 sm:mb-8">
-                I don't just write code.<br />
-                <span className="text-primary text-opacity-80">I architect products.</span>
-              </h2>
-              
-              <p className="text-base sm:text-lg text-muted leading-relaxed mb-6 sm:mb-8">
-                As a developer with a CTO mindset, I see the whole board. From the database schema to the final pixel on the screen, every decision is made with scale, performance, and user experience in mind.
-              </p>
-
-              <div className="flex items-center gap-3 sm:gap-4 text-foreground font-bold text-base sm:text-lg">
-                <ArrowDownRight className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-                Explore the Stack
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT COLUMN: The Timeline / Domains */}
-          <div className="lg:w-7/12 relative mt-4 lg:mt-0">
-            {/* The Vertical Connecting Line */}
-            <div className="absolute left-[23px] sm:left-[27px] top-4 bottom-0 w-px bg-border/80" />
-
-            <div className="flex flex-col gap-8 sm:gap-16">
-              {domains.map((domain, index) => (
-                <div key={index} className="relative flex flex-row gap-4 sm:gap-8">
-                  
-                  {/* Timeline Node & Number (Hover removed, static clean look) */}
-                  <div className="flex items-start z-10">
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 rounded-xl sm:rounded-2xl bg-surface border border-border/80 flex items-center justify-center shadow-sm">
-                      <div className="scale-75 sm:scale-100">
-                        {domain.icon}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Content Block (Hover removed, clean editorial border/shadow) */}
-                  <div className="flex-1 bg-surface border border-border/50 p-5 sm:p-8 rounded-2xl sm:rounded-3xl shadow-sm overflow-hidden">
-                    <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 sm:mb-2">
-                      <span className="text-xs sm:text-sm font-bold text-primary bg-primary/10 px-2 sm:px-3 py-1 rounded-full">
-                        {domain.id}
-                      </span>
-                      <span className="text-xs sm:text-sm font-semibold text-muted uppercase tracking-wider">
-                        {domain.subtitle}
-                      </span>
-                    </div>
-                    
-                    <h3 className="text-xl sm:text-3xl font-bold text-foreground mb-3 sm:mb-4">
-                      {domain.title}
-                    </h3>
-                    
-                    <p className="text-sm sm:text-base text-muted leading-relaxed mb-5 sm:mb-8">
-                      {domain.description}
-                    </p>
-                    
-                    {/* Tech Stack Pills (Kept the very subtle hover on individual pills for interaction mapping) */}
-                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                      {domain.tech.map((tech, techIndex) => (
-                        <span 
-                          key={techIndex} 
-                          className="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm font-medium text-foreground bg-background border border-border/80 hover:border-primary/50 transition-colors"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+        {/* ================= MASSIVE INTRO ================= */}
+        <div className="max-w-5xl mb-20 md:mb-32">
+          <div className="about-reveal flex items-center gap-3 mb-8 md:mb-10">
+            {/* <span className="w-2 h-2 rounded-full bg-[var(--color-primary)] animate-pulse" /> */}
+            <span className="text-xs sm:text-sm font-bold text-[var(--color-foreground)] tracking-widest uppercase">
+              Engineering <span className="text-[#e8751a]">Philosophy</span>
+            </span>
           </div>
           
+          {/* Breaking the text cleanly for maximum typographic impact */}
+          <h2 className="about-reveal text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-extrabold text-[var(--color-foreground)] leading-[1.1] md:leading-[1.05] tracking-tighter mb-8 md:mb-10">
+            I don't just write code.<br />
+            <span className="text-[var(--color-muted)]">I architect scalable ecosystems.</span>
+          </h2>
+
+          <p className="about-reveal text-lg sm:text-xl md:text-2xl text-[var(--color-muted)] font-medium max-w-3xl leading-relaxed">
+            From the database schema to the final pixel on the screen, every decision is made with scale, performance, and user experience in mind.
+          </p>
         </div>
+
+        {/* ================= EDITORIAL INDEX ================= */}
+        <div className="domain-container w-full border-t border-[var(--color-border)]/50">
+          
+          {domains.map((domain, index) => (
+            <div 
+              key={index} 
+              className="domain-row group flex flex-col lg:flex-row items-start lg:items-center justify-between py-10 lg:py-14 border-b border-[var(--color-border)]/50 hover:border-[var(--color-foreground)] transition-colors duration-500 cursor-default"
+            >
+              
+              {/* Left Side: Number & Title */}
+              <div className="flex items-start gap-8 lg:gap-12 lg:w-5/12 mb-4 lg:mb-0 w-full">
+                {/* ID hidden on mobile, visible on medium screens and up */}
+                <span className="hidden md:block text-base font-mono font-bold text-[var(--color-muted)] group-hover:text-[var(--color-primary)] transition-colors duration-300 mt-2 shrink-0">
+                  {domain.id}
+                </span>
+                
+                {/* Title and Subtitle perfectly flush left */}
+                <div className="w-full text-left">
+                  <h3 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--color-foreground)] mb-2 group-hover:translate-x-2 transition-transform duration-500 ease-out">
+                    {domain.title}
+                  </h3>
+                  <span className="text-xs sm:text-sm font-bold tracking-widest uppercase text-[#e8751a] opacity-80">
+                    {domain.subtitle}
+                  </span>
+                </div>
+              </div>
+
+              {/* Right Side: Description & Tech */}
+              {/* Removed the left padding on mobile so it aligns cleanly to the left edge */}
+              <div className="lg:w-6/12 flex flex-col justify-center w-full text-left">
+                <p className="text-base md:text-lg text-[var(--color-muted)] group-hover:text-[var(--color-foreground)] transition-colors duration-500 leading-relaxed mb-4 md:mb-6">
+                  {domain.description}
+                </p>
+                
+                {/* Tech string */}
+                <p className="text-sm md:text-base font-bold text-[var(--color-foreground)] font-mono opacity-60 group-hover:opacity-100 transition-opacity duration-500 leading-relaxed">
+                  {domain.tech}
+                </p>
+              </div>
+
+            </div>
+          ))}
+
+        </div>
+
       </div>
     </section>
   );
