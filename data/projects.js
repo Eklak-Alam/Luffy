@@ -2,7 +2,7 @@ export const projectDetails = {
   "gaprio": {
     id: "gaprio",
     title: "Gaprio - Enterprise AI Operating System",
-    tagline: "The Central Nervous System for Modern Business",
+    tagline: "The Central Nervous System for Modern Enterprise",
     category: "SaaS / AI Automation",
     coverImage: "/projectImg/gaprio/gaprio.png",
     links: {
@@ -10,7 +10,7 @@ export const projectDetails = {
       live: "https://gaprio.in/"
     },
     // Light soft gray/slate
-    bgColor: "#dbbfa7" 
+    bgColor: "#CCE0C8" 
   },
 
   "gogaledu": {
@@ -24,21 +24,7 @@ export const projectDetails = {
       live: "https://gogaledu.com/"
     },
     // Light sky blue
-    bgColor: "#b8e6c0"
-  },
-
-  "balaji": {
-    id: "balaji",
-    title: "Balaji Training Portal",
-    tagline: "Government Certified Vocational Training System",
-    category: "GovTech / Management",
-    coverImage: "/projectImg/balaji/balaji.png",
-    links: {
-      github: "https://github.com/Eklak-Alam/Training-Project-With-Certificate-Generate-Frontend-Code",
-      live: "https://balajitraining.in/"
-    },
-    // Light warm cream/amber
-    bgColor: "#bbbae8"
+    bgColor: "#B2E3AA"
   },
 
   "greggantic": {
@@ -48,12 +34,26 @@ export const projectDetails = {
     category: "EdTech / Dictation",
     coverImage: "/projectImg/greggantic/greggantic.png", // Just add your image to this path
     links: {
-      github: null, // Assuming this one is closed source
+      github: "https://github.com/Eklak-Alam", // Assuming this one is closed source
       live: "https://www.greggantic.com/"
     },
     // Light mint/emerald green
     bgColor: "#69a2ff"
-  }
+  },
+
+  "balaji": {
+    id: "balaji",
+    title: "Balaji Training Portal",
+    tagline: "Government Certified Vocational Training System",
+    category: "GovTech / Management",
+    coverImage: "/projectImg/balaji/balaji.png",
+    links: {
+      github: "https://github.com/Eklak-Alam",
+      live: "https://balajitraining.in/"
+    },
+    // Light warm cream/amber
+    bgColor: "#bbbae8"
+  },
 };
 
 export const allProjects = Object.values(projectDetails);
