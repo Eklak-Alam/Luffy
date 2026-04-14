@@ -42,7 +42,7 @@ export default function Hero() {
 
   // Split into explicit rows to guarantee the 4-top / 3-bottom layout everywhere
   const rowOne = [
-    { name: "Gaprio", logo: "/logos/gaprio.webp" },
+    { name: "Gaprio", logo: "/logos/gaprio1.png" },
     { name: "GogalEdu", logo: "/logos/gogaledu.png" },
     { name: "Adichr", logo: "/logos/adichr.png" },
     { name: "WeCare Diagnostics", logo: "/logos/wecarediagnostic.png" },
@@ -79,7 +79,7 @@ export default function Hero() {
           
           {/* Eyebrow / Tagline */}
           <div className="hero-reveal flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-[var(--color-border)]/60 bg-[var(--color-surface)] mb-8">
-            <Terminal className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[var(--color-primary)]" />
+            <Terminal className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#e8751a]" />
             <span className="text-[10px] sm:text-sm font-semibold text-[var(--color-muted)] tracking-wide uppercase whitespace-nowrap">
               Full Stack • DevOps • Cloud Engineer
             </span>

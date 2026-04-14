@@ -82,7 +82,7 @@ export default function Footer() {
           <div className="footer-fade flex justify-center w-full mb-16 md:hidden">
              <button 
                onClick={scrollToTop} 
-               className="group flex items-center justify-center gap-3 w-full max-w-[200px] px-5 py-4 rounded-full bg-background/5 border border-background/10 active:bg-primary active:border-primary transition-all duration-300"
+               className="group flex cursor-pointer items-center justify-center gap-3 w-full max-w-[200px] px-5 py-4 rounded-full bg-background/5 border border-background/10 active:bg-primary active:border-primary transition-all duration-300"
              >
                <span className="text-xs font-bold uppercase tracking-widest text-background">
                  Back to Top
@@ -112,7 +112,7 @@ export default function Footer() {
                onClick={scrollToTop} 
                className="hidden md:flex group items-center gap-3 px-5 py-2.5 rounded-full bg-background/5 hover:bg-primary border border-background/10 hover:border-primary transition-all duration-300"
              >
-               <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-background group-hover:text-primary-text transition-colors">
+               <span className="text-[10px] cursor-pointer md:text-xs font-bold uppercase tracking-widest text-background group-hover:text-primary-text transition-colors">
                  Back to Top
                </span>
                <ArrowUp size={14} strokeWidth={3} className="text-background/60 group-hover:text-primary-text group-hover:-translate-y-1 transition-all duration-300" />

@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Linkedin } from "lucide-react";
 
-// Updated with exact pastel colors matching your reference image
 const testimonials = [
   {
     id: 1,
@@ -71,7 +70,16 @@ export default function TestimonialCarousel() {
     );
   };
 
-  // Upgraded 3D logic to match the reference image exactly
+  // Handle Swipe/Drag Logic
+  const handleDragEnd = (event, info) => {
+    const swipeThreshold = 50; // How far user must drag to trigger swipe
+    if (info.offset.x < -swipeThreshold) {
+      handleNext();
+    } else if (info.offset.x > swipeThreshold) {
+      handlePrev();
+    }
+  };
+
   const getCardStyle = (index) => {
     const total = testimonials.length;
     let diff = (index - currentIndex) % total;
@@ -79,7 +87,7 @@ export default function TestimonialCarousel() {
     if (diff < -Math.floor(total / 2)) diff += total;
 
     if (diff === 0) {
-      // Center Active Card (Flat and elevated)
+      // Center Active Card
       return {
         x: "0%",
         z: 0,
@@ -90,9 +98,9 @@ export default function TestimonialCarousel() {
         boxShadow: "0 20px 40px -10px rgba(0, 0, 0, 0.1)",
       };
     } else if (diff === -1) {
-      // Left Card (Tilted to the right, partially off-screen on mobile to peek)
+      // Left Card
       return {
-        x: typeof window !== 'undefined' && window.innerWidth < 768 ? "-75%" : "-60%", 
+        x: typeof window !== "undefined" && window.innerWidth < 768 ? "-75%" : "-60%",
         z: -100,
         rotateY: 15,
         scale: 0.95,
@@ -101,9 +109,9 @@ export default function TestimonialCarousel() {
         boxShadow: "-10px 10px 20px -10px rgba(0,0,0,0.05)",
       };
     } else if (diff === 1) {
-      // Right Card (Tilted to the left, partially off-screen on mobile to peek)
+      // Right Card
       return {
-        x: typeof window !== 'undefined' && window.innerWidth < 768 ? "75%" : "60%",
+        x: typeof window !== "undefined" && window.innerWidth < 768 ? "75%" : "60%",
         z: -100,
         rotateY: -15,
         scale: 0.95,
@@ -112,7 +120,7 @@ export default function TestimonialCarousel() {
         boxShadow: "10px 10px 20px -10px rgba(0,0,0,0.05)",
       };
     } else {
-      // Hidden Cards (Pushed way back)
+      // Hidden Cards
       return {
         x: diff < 0 ? "-120%" : "120%",
         z: -300,
@@ -128,15 +136,18 @@ export default function TestimonialCarousel() {
   if (!isClient) return null;
 
   return (
-    <section id="testimonial" className="py-20 md:py-32 overflow-hidden relative w-full flex flex-col items-center justify-center bg-[var(--color-background)] font-sans">
-      
+    <section
+      id="testimonial"
+      className="py-20 md:py-32 overflow-hidden relative w-full flex flex-col items-center justify-center bg-[var(--color-background)] font-sans"
+    >
       {/* Header Section */}
       <div className="text-center mb-16 md:mb-24 px-6 relative z-40">
         <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif font-medium tracking-tight text-[var(--color-foreground)]">
           Kind words <span className="text-[#e8751a]">from collaborators</span>
         </h2>
         <p className="text-[var(--color-muted)] max-w-xl mx-auto mt-6 text-lg">
-          Insights and feedback from the amazing people I have had the pleasure of working with.
+          Insights and feedback from the amazing people I have had the pleasure
+          of working with.
         </p>
       </div>
 
@@ -152,8 +163,20 @@ export default function TestimonialCarousel() {
                 key={testimonial.id}
                 initial={false}
                 animate={getCardStyle(index)}
-                transition={{ duration: 0.7, ease: [0.25, 1, 0.35, 1] }}
-                className="absolute w-[300px] sm:w-[340px] md:w-[380px] h-[420px] md:h-[480px] rounded-3xl p-8 flex flex-col justify-between cursor-pointer border border-black/5"
+                // Upgraded transition to Spring for a smoother, buttery feel
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 30,
+                  mass: 0.8,
+                }}
+                // Drag properties added here
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                onDragEnd={handleDragEnd}
+                // Added cursor-grab classes here
+                className="absolute w-[300px] sm:w-[340px] md:w-[380px] h-[420px] md:h-[480px] rounded-3xl p-8 flex flex-col justify-between border border-black/5 cursor-grab active:cursor-grabbing"
                 style={{
                   backgroundColor: testimonial.bgColor,
                   transformStyle: "preserve-3d",
@@ -161,13 +184,13 @@ export default function TestimonialCarousel() {
                 }}
                 onClick={() => setCurrentIndex(index)}
               >
-                {/* Testimonial Text - High-end editorial serif typography */}
-                <div className="text-[#4a4a4a] text-sm md:text-base leading-relaxed md:leading-[1.8] font-serif whitespace-pre-line overflow-hidden tracking-wide opacity-90">
+                {/* Testimonial Text */}
+                <div className="text-[#4a4a4a] text-sm md:text-base leading-relaxed md:leading-[1.8] font-serif whitespace-pre-line overflow-hidden tracking-wide opacity-90 pointer-events-none">
                   {testimonial.text}
                 </div>
 
                 {/* Author Info */}
-                <div className="flex items-end justify-between mt-6 w-full pt-4 border-t border-black/5">
+                <div className="flex items-end justify-between mt-6 w-full pt-4 border-t border-black/5 pointer-events-none">
                   <div className="flex items-center">
                     <div className="w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden shrink-0 shadow-sm border border-white/50">
                       <img
@@ -185,13 +208,14 @@ export default function TestimonialCarousel() {
                       </p>
                     </div>
                   </div>
-                  
+
                   <a
                     href={testimonial.linkedin}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-[#666] hover:text-[#0a66c2] transition-colors ml-2 shrink-0 mb-1"
-                    onClick={(e) => e.stopPropagation()} // Prevents sliding the card when clicking the link
+                    // Restored pointer-events for the link so it remains clickable
+                    className="text-[#666] hover:text-[#0a66c2] transition-colors ml-2 shrink-0 mb-1 pointer-events-auto"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <Linkedin className="w-5 h-5" strokeWidth={1.5} />
                   </a>
@@ -202,17 +226,16 @@ export default function TestimonialCarousel() {
         </AnimatePresence>
       </div>
 
-      {/* Unified Pill Controller matching your reference image */}
-      <div className="flex items-center gap-6 mt-12">
+      {/* Unified Pill Controller */}
+      <div className="flex items-center gap-6 mt-12 z-40 relative">
         <button
           onClick={handlePrev}
-          className="w-10 h-10 rounded-full bg-[var(--color-border)] flex items-center justify-center text-[var(--color-foreground)] hover:bg-[var(--color-primary)] hover:text-[var(--color-brand-lightest)] transition-all duration-300"
+          className="w-10 h-10 cursor-pointer rounded-full bg-[var(--color-border)] flex items-center justify-center text-[var(--color-foreground)] hover:bg-[var(--color-primary)] hover:text-[var(--color-brand-lightest)] transition-all duration-300"
         >
           <ChevronLeft size={20} />
         </button>
 
         {/* Pagination Dots */}
-
         <div className="flex gap-2 bg-[var(--color-border)] px-4 py-2 rounded-full">
           {testimonials.map((_, idx) => (
             <button
@@ -229,7 +252,7 @@ export default function TestimonialCarousel() {
 
         <button
           onClick={handleNext}
-          className="w-10 h-10 rounded-full bg-[var(--color-border)] flex items-center justify-center text-[var(--color-foreground)] hover:bg-[var(--color-primary)] hover:text-[var(--color-brand-lightest)] transition-all duration-300"
+          className="w-10 h-10 cursor-pointer rounded-full bg-[var(--color-border)] flex items-center justify-center text-[var(--color-foreground)] hover:bg-[var(--color-primary)] hover:text-[var(--color-brand-lightest)] transition-all duration-300"
         >
           <ChevronRight size={20} />
         </button>
