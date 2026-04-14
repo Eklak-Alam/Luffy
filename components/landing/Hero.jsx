@@ -87,8 +87,8 @@ export default function Hero() {
 
           {/* Massive Typography */}
           <h1 className="hero-reveal text-[3.25rem] leading-[1.1] sm:text-7xl md:text-8xl lg:text-[8rem] xl:text-[9.5rem] font-extrabold tracking-tighter text-[var(--color-foreground)] mb-6">
-            Building on Localhost.<br />
-            <span className="text-[var(--color-primary)]">Deploying to the World.</span>
+            Building on Localhost<span className="text-[#e8751a]">.</span><br />
+            <span className="text-[var(--color-primary)]">Deploying to the World<span className="text-[#e8751a]">.</span></span>
           </h1>
 
           {/* Subheading: The Value Proposition */}

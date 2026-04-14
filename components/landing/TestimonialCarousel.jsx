@@ -12,7 +12,7 @@ const testimonials = [
     text: "Working with Eklak was a great experience. His understanding of modern frontend development using React and performance optimization is impressive. He focuses not just on building UI, but crafting smooth user experiences. His ability to debug complex UI issues and improve responsiveness really helped our team deliver faster.",
     image: "https://i.pravatar.cc/150?img=32",
     linkedin: "https://linkedin.com/in/rohit-sharma-dev",
-    bgColor: "#e6f7ff",
+    bgColor: "#CCE0C8",
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ const testimonials = [
     text: "Eklak has strong backend fundamentals and a solid grip on Spring Boot. During our collaboration, he built scalable APIs and handled database integration efficiently. His problem-solving mindset and willingness to learn new backend technologies make him a valuable developer.",
     image: "https://i.pravatar.cc/150?img=47",
     linkedin: "https://linkedin.com/in/anjali-verma-tech",
-    bgColor: "#f0fdf4",
+    bgColor: "#B2E3AA",
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const testimonials = [
     text: "I worked with Eklak on deploying applications using Docker and CI/CD pipelines. He quickly adapted to DevOps practices and understood the workflow of automation tools like GitHub Actions. His curiosity in cloud technologies and eagerness to implement real-world solutions stood out.",
     image: "https://i.pravatar.cc/150?img=12",
     linkedin: "https://linkedin.com/in/vikram-singh-devops",
-    bgColor: "#fff7ed",
+    bgColor: "#7ca6eb",
   },
   {
     id: 4,
@@ -39,7 +39,7 @@ const testimonials = [
     text: "Eklak is a well-rounded full-stack developer. He can seamlessly switch between frontend and backend tasks. While working together, he developed complete features from UI to API integration with clean and maintainable code. His consistency and dedication are commendable.",
     image: "https://i.pravatar.cc/150?img=25",
     linkedin: "https://linkedin.com/in/neha-gupta-fullstack",
-    bgColor: "#f5f3ff",
+    bgColor: "#BBBAE8",
   },
   {
     id: 5,

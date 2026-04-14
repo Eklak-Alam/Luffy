@@ -38,7 +38,7 @@ export const projectDetails = {
       live: "https://www.greggantic.com/"
     },
     // Light mint/emerald green
-    bgColor: "#69a2ff"
+    bgColor: "#7ca6eb"
   },
 
   "balaji": {
