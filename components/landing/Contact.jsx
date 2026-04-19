@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import emailjs from '@emailjs/browser';
 import { 
-  ArrowUpRight, Send, Loader2, Github, Linkedin, Mail, MapPin, ChevronDown 
+  ArrowUpRight, Send, Loader2, Github, Linkedin, Mail, MapPin, ChevronDown, Calendar 
 } from "lucide-react";
 
 // Custom SVG for the new X Logo
@@ -112,6 +112,7 @@ export default function Contact() {
   };
 
   const socialLinks = [
+    { name: "Book a Meeting", icon: <Calendar className="w-5 h-5 md:w-6 md:h-6" />, url: "https://calendly.com/eklakalam/the-connection-collaboration" },
     { name: "LinkedIn", icon: <Linkedin className="w-5 h-5 md:w-6 md:h-6" />, url: "https://www.linkedin.com/in/eklak-alam/" },
     { name: "GitHub", icon: <Github className="w-5 h-5 md:w-6 md:h-6" />, url: "https://github.com/Eklak-Alam" },
     { name: "X (Twitter)", icon: <XIcon className="w-5 h-5 md:w-6 md:h-6" />, url: "https://x.com/eklak__alam" },
