@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import emailjs from '@emailjs/browser';
+import toast from "react-hot-toast"; // <-- Import the toaster
 import { 
-  ArrowUpRight, Send, Loader2, Github, Linkedin, Mail, MapPin, ChevronDown, Calendar 
+  ArrowUpRight, Send, Loader2, Github, Linkedin, Mail, MapPin, ChevronDown, Calendar, 
+  Code
 } from "lucide-react";
 
 // Custom SVG for the new X Logo
@@ -111,13 +113,38 @@ export default function Contact() {
     }
   };
 
-  const socialLinks = [
-    { name: "Book a Meeting", icon: <Calendar className="w-5 h-5 md:w-6 md:h-6" />, url: "https://calendly.com/eklakalam/the-connection-collaboration" },
-    { name: "LinkedIn", icon: <Linkedin className="w-5 h-5 md:w-6 md:h-6" />, url: "https://www.linkedin.com/in/eklak-alam/" },
-    { name: "GitHub", icon: <Github className="w-5 h-5 md:w-6 md:h-6" />, url: "https://github.com/Eklak-Alam" },
-    { name: "X (Twitter)", icon: <XIcon className="w-5 h-5 md:w-6 md:h-6" />, url: "https://x.com/eklak__alam" },
-    { name: "Email Me", icon: <Mail className="w-5 h-5 md:w-6 md:h-6" />, url: "mailto:eklakalam420@gmail.com" },
-  ];
+const socialLinks = [
+  { 
+    name: "Book a Meeting", 
+    icon: <Calendar className="w-5 h-5 md:w-6 md:h-6" />, 
+    url: "https://calendly.com/eklakalam/the-connection-collaboration" 
+  },
+  { 
+    name: "LinkedIn", 
+    icon: <Linkedin className="w-5 h-5 md:w-6 md:h-6" />, 
+    url: "https://www.linkedin.com/in/eklak-alam/" 
+  },
+  { 
+    name: "GitHub", 
+    icon: <Github className="w-5 h-5 md:w-6 md:h-6" />, 
+    url: "https://github.com/Eklak-Alam" 
+  },
+  { 
+    name: "X (Twitter)", 
+    icon: <XIcon className="w-5 h-5 md:w-6 md:h-6" />, 
+    url: "https://x.com/eklak__alam" 
+  },
+  { 
+    name: "LeetCode", 
+    icon: <Code className="w-5 h-5 md:w-6 md:h-6" />, 
+    url: "https://leetcode.com/u/Eklak_Alam/" 
+  },
+  { 
+    name: "Email Me", 
+    icon: <Mail className="w-5 h-5 md:w-6 md:h-6" />, 
+    url: "mailto:eklakalam420@gmail.com" 
+  },
+];
 
   return (
     <section 
@@ -275,35 +302,56 @@ export default function Contact() {
                   </div>
 
                   {/* High-End Fill-from-bottom Action Button */}
-                  <div className="pt-6">
-                    <button 
-                      type="submit" 
-                      disabled={status === "loading"}
-                      className={`relative overflow-hidden flex items-center justify-center md:justify-between w-full md:w-auto px-8 md:px-10 py-4 rounded-full font-bold text-sm md:text-base transition-all duration-500 shadow-xl border
-                        ${status === "loading" ? "opacity-50 cursor-not-allowed bg-surface text-muted border-border" 
-                        : isFormValid 
-                          ? "bg-foreground text-background border-foreground cursor-pointer active:scale-95 group" 
-                          : "bg-surface border-border text-muted cursor-pointer hover:bg-border/30"}
-                      `}
-                    >
-                      {/* The Fill Animation Layer - ONLY active when form is fully valid */}
-                      {isFormValid && status !== "loading" && (
-                        <span className="absolute bottom-0 left-0 w-full h-0 bg-[#e8751a] transition-all duration-300 ease-out group-hover:h-full z-0" />
-                      )}
+                  <div className="pt-8 relative flex justify-center md:justify-start w-full md:w-auto group">
 
-                      {/* Button Content */}
-                      <div className={`relative z-10 flex items-center justify-between w-full md:w-auto md:gap-4 transition-colors duration-300 ${isFormValid ? "group-hover:text-white" : ""}`}>
-                        {status === "loading" ? (
-                          <> TRANSMITTING <Loader2 size={20} className="animate-spin ml-3" /> </>
-                        ) : (
-                          <> 
-                            SEND MESSAGE 
-                            <Send size={18} className={`ml-2 transition-transform duration-300 ${isFormValid ? "group-hover:translate-x-1 group-hover:-translate-y-1" : "opacity-50"}`} /> 
-                          </>
-                        )}
-                      </div>
-                    </button>
-                  </div>
+
+  {/* Button Wrapper */}
+  <div className="pt-8 flex justify-center md:justify-start w-full md:w-auto">
+  <button 
+    // If invalid, it's just a button so it doesn't submit. If valid, it becomes a submit button.
+    type={isFormValid ? "submit" : "button"} 
+    
+    // Only completely disable if loading so the click event still works for the toast
+    disabled={status === "loading"}
+    
+    // Fire the simple, clean toast if they click while the form is empty
+    onClick={() => {
+      if (!isFormValid && status !== "loading") {
+        toast.error("Please fill out all fields.", {
+          duration: 2000, // Disappears after 2 seconds
+          id: "validation-error", // Prevents spamming multiple toasts if clicked fast
+        });
+      }
+    }}
+    
+    className={`
+      relative flex items-center justify-center w-full md:w-auto px-10 py-4 
+      rounded-full font-bold text-sm md:text-base tracking-widest
+      transition-colors duration-300 border-2
+      ${status === "loading" 
+        ? "bg-surface border-border text-muted cursor-wait" 
+        : isFormValid 
+          ? "bg-foreground text-background border-foreground hover:bg-transparent hover:text-foreground cursor-pointer" 
+          : "bg-surface border-border text-foreground/70 cursor-pointer hover:bg-border/30"}
+    `}
+  >
+    {/* Button Content */}
+    <div className="relative z-10 flex items-center justify-center gap-3">
+      {status === "loading" ? (
+        <> 
+          <span>TRANSMITTING</span> 
+          <Loader2 size={20} className="animate-spin" /> 
+        </>
+      ) : (
+        <> 
+          <span>SEND MESSAGE</span> 
+          <Send size={18} className={`${isFormValid ? "" : "opacity-50"}`} /> 
+        </>
+      )}
+    </div>
+  </button>
+</div>
+</div>
 
                 </motion.form>
               )}

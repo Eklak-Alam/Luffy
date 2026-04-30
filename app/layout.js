@@ -1,4 +1,5 @@
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
 import SmoothScroller from "@/components/logic/SmoothScroller";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
@@ -79,6 +80,23 @@ export default function RootLayout({ children }) {
   return (
 <html className={`${fraunces.variable} ${dmSans.variable}`}>
       <body className={`font-[family-name:var(--font-body)] antialiased bg-background text-foreground overflow-x-hidden max-w-[100vw]`}>
+
+        <Toaster 
+          position="bottom-center"
+          toastOptions={{
+            style: {
+              background: 'var(--color-brand-dark)',
+              color: 'var(--color-brand-lightest)',
+              border: '1px solid var(--color-brand-light)',
+              fontWeight: '600',
+              letterSpacing: '0.05em',
+            },
+            iconTheme: {
+              primary: 'var(--color-brand-accent)', // The orange for the error icon!
+              secondary: 'var(--color-brand-lightest)',
+            },
+          }}
+        />
         <Script
           id="json-ld"
           type="application/ld+json"
