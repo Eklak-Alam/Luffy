@@ -134,11 +134,11 @@ const socialLinks = [
     icon: <XIcon className="w-5 h-5 md:w-6 md:h-6" />, 
     url: "https://x.com/eklak__alam" 
   },
-  { 
-    name: "LeetCode", 
-    icon: <Code className="w-5 h-5 md:w-6 md:h-6" />, 
-    url: "https://leetcode.com/u/Eklak_Alam/" 
-  },
+  // { 
+  //   name: "LeetCode", 
+  //   icon: <Code className="w-5 h-5 md:w-6 md:h-6" />, 
+  //   url: "https://leetcode.com/u/Eklak_Alam/" 
+  // },
   { 
     name: "Email Me", 
     icon: <Mail className="w-5 h-5 md:w-6 md:h-6" />, 
