@@ -9,9 +9,9 @@ export default function Hero() {
   const heroRef = useRef(null);
 
   useGSAP(() => {
-    const tl = gsap.timeline({ delay: 0.2 }); // Wait slightly for Navbar
+    const tl = gsap.timeline({ delay: 0.2 });
 
-    // Animate the text lines in with a heavy, premium glide
+    // Animate the text lines in
     tl.fromTo(
       ".hero-reveal",
       { y: 50, opacity: 0 },
@@ -24,7 +24,7 @@ export default function Hero() {
       }
     );
 
-    // Stagger the logos in smoothly after the text
+    // Stagger the logos in smoothly, but NO auto-pop afterwards
     tl.fromTo(
       ".brand-logo",
       { y: 20, opacity: 0, scale: 0.95 },
@@ -34,13 +34,13 @@ export default function Hero() {
         scale: 1,
         duration: 0.8, 
         stagger: 0.1, 
-        ease: "back.out(1.2)" 
+        ease: "back.out(1.2)"
       },
-      "-=0.6" // Overlap with the text animation for a faster feel
+      "-=0.6" 
     );
   }, { scope: heroRef });
 
-  // Split into explicit rows to guarantee the 4-top / 3-bottom layout everywhere
+  // Cleaned up arrays without any URLs
   const rowOne = [
     { name: "Gaprio", logo: "/logos/gaprio1.png" },
     { name: "GogalEdu", logo: "/logos/gogaledu.png" },
@@ -59,9 +59,7 @@ export default function Hero() {
       ref={heroRef}
       className="relative min-h-screen flex flex-col justify-center pt-24 pb-16 overflow-hidden bg-[var(--color-background)]"
     >
-      {/* Visual Hierarchy: Subtle Infrastructure Grid Background 
-        Fades out cleanly before hitting the logos, with transparent upper corners
-      */}
+      {/* Background Grid */}
       <div 
         className="absolute inset-x-0 top-0 h-[70vh] z-0 pointer-events-none"
         style={{
@@ -76,8 +74,6 @@ export default function Hero() {
         
         {/* ================= MAIN HERO TEXT ================= */}
         <div className="flex flex-col items-start justify-center max-w-5xl w-full">
-          
-          {/* Eyebrow / Tagline */}
           <div className="hero-reveal flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-[var(--color-border)]/60 bg-[var(--color-surface)] mb-8">
             <Terminal className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#e8751a]" />
             <span className="text-[10px] sm:text-sm font-semibold text-[var(--color-muted)] tracking-wide uppercase whitespace-nowrap">
@@ -85,33 +81,22 @@ export default function Hero() {
             </span>
           </div>
 
-          {/* Massive Typography */}
           <h1 className="hero-reveal text-[3.25rem] leading-[1.1] sm:text-7xl md:text-8xl lg:text-[8rem] xl:text-[9.5rem] font-extrabold tracking-tighter text-[var(--color-foreground)] mb-6">
             Building on Localhost<br />
-            {/* <span className="text-[#e8751a]">.</span> */}
             <span className="text-[var(--color-primary)]">Deploying to the World</span>
-            {/* <span className="text-[#e8751a]">.</span> */}
           </h1>
 
-          {/* Subheading: The Value Proposition */}
           <p className="hero-reveal text-base sm:text-xl md:text-2xl text-[var(--color-muted)] max-w-3xl leading-relaxed mb-12 font-medium">
             I engineer end-to-end digital solutions. From pixel-perfect React interfaces to scalable cloud infrastructure and CI/CD pipelines. Everything you need, architected in one place.
           </p>
 
-          {/* CTA Buttons */}
           <div className="hero-reveal flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-            <a 
-              href="#work" 
-              className="group flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 rounded-full bg-[var(--color-foreground)] text-[var(--color-background)] text-lg font-bold hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-text)] hover:-translate-y-1 hover:shadow-2xl hover:shadow-[var(--color-primary)]/20 transition-all duration-300 shadow-xl"
-            >
+            <a href="#work" className="group flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 rounded-full bg-[var(--color-foreground)] text-[var(--color-background)] text-lg font-bold hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-text)] hover:-translate-y-1 hover:shadow-2xl hover:shadow-[var(--color-primary)]/20 transition-all duration-300 shadow-xl">
               View Projects
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </a>
 
-            <a 
-              href="#contact" 
-              className="flex items-center justify-center w-full sm:w-auto px-8 py-4 rounded-full border-2 border-[var(--color-border)] text-[var(--color-foreground)] text-lg font-bold hover:border-[var(--color-foreground)] hover:bg-[var(--color-foreground)] hover:text-[var(--color-background)] hover:-translate-y-1 transition-all duration-300"
-            >
+            <a href="#contact" className="flex items-center justify-center w-full sm:w-auto px-8 py-4 rounded-full border-2 border-[var(--color-border)] text-[var(--color-foreground)] text-lg font-bold hover:border-[var(--color-foreground)] hover:bg-[var(--color-foreground)] hover:text-[var(--color-background)] hover:-translate-y-1 transition-all duration-300">
               Contact Me
             </a>
           </div>
@@ -129,41 +114,45 @@ export default function Hero() {
             {/* ROW 1: Exactly 4 Logos */}
             <div className="flex items-center justify-center w-full gap-3 sm:gap-8 md:gap-16">
               {rowOne.map((company, index) => (
-                <div 
-                  key={`r1-${index}`} 
-                  // Scaled down mobile widths (w-[70px]) to fit 4 in a row perfectly
-                  className="brand-logo group relative flex items-center justify-center w-[70px] sm:w-[120px] md:w-[150px] shrink-0"
-                >
-                  {/* The 30% Green Premium Ambient Glow on Hover */}
-                  <div className="absolute inset-0 bg-[var(--color-primary)]/30 blur-xl md:blur-2xl rounded-full scale-50 opacity-0 group-hover:scale-150 group-hover:opacity-100 transition-all duration-500 ease-out z-0 pointer-events-none"></div>
-                  
-                  {/* Full Color Logo */}
-                  <img 
-                    src={company.logo} 
-                    alt={`${company.name} logo`} 
-                    // Scaled down mobile height (max-h-7) to match the width
-                    className="relative z-10 max-h-7 sm:max-h-10 md:max-h-12 w-full object-contain opacity-70 group-hover:opacity-100 group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-400 ease-out cursor-pointer"
-                  />
+                <div key={`r1-${index}`} className="brand-logo flex items-center justify-center w-[70px] sm:w-[120px] md:w-[150px] shrink-0 z-20">
+                  {/* Changed from <a> tag to a basic <div>, no cursor-pointer, no redirect */}
+                  <div className="group relative flex items-center justify-center w-full">
+                    <img 
+                      src={company.logo} 
+                      alt={`${company.name} logo`} 
+                      className="relative max-h-7 sm:max-h-10 md:max-h-12 w-full object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                    />
+                    
+                    {/* --- THE CUSTOM TOOLTIP --- */}
+                    <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-[#40513B] text-white text-xs sm:text-sm font-medium rounded-md shadow-lg opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300 pointer-events-none whitespace-nowrap z-50 flex items-center justify-center">
+                      {company.name}
+                      {/* Tooltip Tail */}
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 border-[6px] border-transparent border-t-[#40513B]"></div>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
 
             {/* ROW 2: Exactly 3 Logos */}
-            <div className="flex items-center justify-center w-full gap-5 sm:gap-12 md:gap-20">
+            <div className="flex items-center justify-center w-full gap-5 sm:gap-12 md:gap-20 z-10">
               {rowTwo.map((company, index) => (
-                <div 
-                  key={`r2-${index}`} 
-                  className="brand-logo group relative flex items-center justify-center w-[75px] sm:w-[120px] md:w-[150px] shrink-0"
-                >
-                  {/* The 30% Green Premium Ambient Glow on Hover */}
-                  <div className="absolute inset-0 bg-[var(--color-primary)]/30 blur-xl md:blur-2xl rounded-full scale-50 opacity-0 group-hover:scale-150 group-hover:opacity-100 transition-all duration-500 ease-out z-0 pointer-events-none"></div>
-                  
-                  {/* Full Color Logo */}
-                  <img 
-                    src={company.logo} 
-                    alt={`${company.name} logo`} 
-                    className="relative z-10 max-h-7 sm:max-h-10 md:max-h-12 w-full sm:opacity-100 object-contain lg:opacity-70 md:opacity-70 group-hover:opacity-100 group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-400 ease-out cursor-pointer"
-                  />
+                <div key={`r2-${index}`} className="brand-logo flex items-center justify-center w-[75px] sm:w-[120px] md:w-[150px] shrink-0">
+                  {/* Changed from <a> tag to a basic <div>, no cursor-pointer, no redirect */}
+                  <div className="group relative flex items-center justify-center w-full">
+                    <img 
+                      src={company.logo} 
+                      alt={`${company.name} logo`} 
+                      className="relative max-h-7 sm:max-h-10 md:max-h-12 w-full object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                    />
+                    
+                    {/* --- THE CUSTOM TOOLTIP --- */}
+                    <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-[#40513B] text-white text-xs sm:text-sm font-medium rounded-md shadow-lg opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300 pointer-events-none whitespace-nowrap z-50 flex items-center justify-center">
+                      {company.name}
+                      {/* Tooltip Tail */}
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 border-[6px] border-transparent border-t-[#40513B]"></div>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
