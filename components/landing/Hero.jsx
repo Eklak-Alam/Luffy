@@ -115,7 +115,6 @@ export default function Hero() {
             <div className="flex items-center justify-center w-full gap-3 sm:gap-8 md:gap-16">
               {rowOne.map((company, index) => (
                 <div key={`r1-${index}`} className="brand-logo flex items-center justify-center w-[70px] sm:w-[120px] md:w-[150px] shrink-0 z-20">
-                  {/* Changed from <a> tag to a basic <div>, no cursor-pointer, no redirect */}
                   <div className="group relative flex items-center justify-center w-full">
                     <img 
                       src={company.logo} 
@@ -123,10 +122,9 @@ export default function Hero() {
                       className="relative max-h-7 sm:max-h-10 md:max-h-12 w-full object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300"
                     />
                     
-                    {/* --- THE CUSTOM TOOLTIP --- */}
-                    <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-[#40513B] text-white text-xs sm:text-sm font-medium rounded-md shadow-lg opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300 pointer-events-none whitespace-nowrap z-50 flex items-center justify-center">
+                    {/* --- FIXED TOOLTIP --- Added z-[100] and group-active to guarantee visibility */}
+                    <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-[#40513B] text-white text-xs sm:text-sm font-medium rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-active:opacity-100 group-active:visible transition-all duration-300 pointer-events-none whitespace-nowrap z-[100] flex items-center justify-center">
                       {company.name}
-                      {/* Tooltip Tail */}
                       <div className="absolute top-full left-1/2 -translate-x-1/2 border-[6px] border-transparent border-t-[#40513B]"></div>
                     </div>
                   </div>
@@ -138,7 +136,6 @@ export default function Hero() {
             <div className="flex items-center justify-center w-full gap-5 sm:gap-12 md:gap-20 z-10">
               {rowTwo.map((company, index) => (
                 <div key={`r2-${index}`} className="brand-logo flex items-center justify-center w-[75px] sm:w-[120px] md:w-[150px] shrink-0">
-                  {/* Changed from <a> tag to a basic <div>, no cursor-pointer, no redirect */}
                   <div className="group relative flex items-center justify-center w-full">
                     <img 
                       src={company.logo} 
@@ -146,10 +143,9 @@ export default function Hero() {
                       className="relative max-h-7 sm:max-h-10 md:max-h-12 w-full object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300"
                     />
                     
-                    {/* --- THE CUSTOM TOOLTIP --- */}
-                    <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-[#40513B] text-white text-xs sm:text-sm font-medium rounded-md shadow-lg opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300 pointer-events-none whitespace-nowrap z-50 flex items-center justify-center">
+                    {/* --- FIXED TOOLTIP --- Added z-[100] and group-active to guarantee visibility */}
+                    <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-[#40513B] text-white text-xs sm:text-sm font-medium rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-active:opacity-100 group-active:visible transition-all duration-300 pointer-events-none whitespace-nowrap z-[100] flex items-center justify-center">
                       {company.name}
-                      {/* Tooltip Tail */}
                       <div className="absolute top-full left-1/2 -translate-x-1/2 border-[6px] border-transparent border-t-[#40513B]"></div>
                     </div>
                   </div>
