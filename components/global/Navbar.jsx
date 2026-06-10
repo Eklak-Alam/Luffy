@@ -112,7 +112,7 @@ export default function Navbar() {
               
               {/* Changed from heavy button to clean text link with 45-degree arrow */}
               <a
-                href="https://drive.google.com/file/d/1Qm2bgdkwgphd664EtWRndUk2P3W7BJSE/view?usp=sharing"
+                href="https://drive.google.com/file/d/1RNWULvINo77g3BybnnRL1f06hHA2UAyd/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group hidden md:flex items-center gap-1.5 text-sm font-bold uppercase tracking-widest text-foreground hover:text-primary transition-colors duration-300"
@@ -185,7 +185,7 @@ export default function Navbar() {
               {/* Changed from heavy button to clean text link with 45-degree arrow for mobile too */}
               <a
                 // Notice the slash is removed here 👇
-                href="https://drive.google.com/file/d/1Qm2bgdkwgphd664EtWRndUk2P3W7BJSE/view?usp=sharing"
+                href="https://drive.google.com/file/d/1RNWULvINo77g3BybnnRL1f06hHA2UAyd/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)}
