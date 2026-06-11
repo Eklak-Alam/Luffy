@@ -240,7 +240,6 @@ export default function Navbar() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 30 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              // Reduced max-width to 4xl and ensured it scales well on mobile
               className="relative w-full max-w-4xl h-[90vh] md:h-[85vh] bg-background border border-border/40 rounded-2xl shadow-2xl flex flex-col overflow-hidden"
               onClick={(e) => e.stopPropagation()} 
             >
@@ -251,7 +250,7 @@ export default function Navbar() {
                 </h2>
                 
                 <div className="flex items-center gap-3 md:gap-5">
-                  {/* Download Button with exact custom colors */}
+                  {/* Download Button */}
                   <a
                     href={resumeDownloadUrl}
                     className="flex items-center gap-2 px-4 py-2 text-sm font-bold rounded-full transition-transform duration-300 active:scale-95"
@@ -261,7 +260,7 @@ export default function Navbar() {
                     <span className="hidden sm:inline">Download</span>
                   </a>
                   
-                  {/* Close Button with orange color and smooth spin hover */}
+                  {/* Close Button */}
                   <button
                     onClick={() => setIsResumeModalOpen(false)}
                     className="p-1.5 text-[#e8751a] cursor-pointer hover:bg-[#e8751a]/15 rounded-full transition-all duration-300 hover:rotate-90"
