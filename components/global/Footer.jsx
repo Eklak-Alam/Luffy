@@ -14,14 +14,17 @@ export default function Footer() {
     }
 
     let ctx = gsap.context(() => {
+      // Supercharged GSAP Physics
       gsap.fromTo(
         ".footer-fade",
-        { y: 30 },
+        { y: 60, opacity: 0 }, // Start further down and completely hidden
         {
           y: 0,
-          duration: 1,
-          stagger: 0.15,
-          ease: "power3.out",
+          opacity: 1,
+          duration: 1.5, // Longer duration for a more luxurious glide
+          stagger: 0.12, // Tighter stagger
+          ease: "expo.out", // High-end "snap and settle" easing
+          force3D: true, // Forces GPU acceleration to completely kill lag
           scrollTrigger: {
             trigger: footerRef.current,
             start: "top 85%",
@@ -51,7 +54,8 @@ export default function Footer() {
         {/* ================= TOP SECTION: LET'S CHAT ================= */}
         <div className="max-w-[1400px] 2xl:max-w-[1600px] w-full mx-auto px-6 md:px-12 lg:px-16 md:flex-1 flex flex-col justify-center">
           
-          <div className="footer-fade flex flex-col items-start w-full">
+          {/* Added will-change-transform for lag-free performance */}
+          <div className="footer-fade will-change-transform flex flex-col items-start w-full">
             <p className="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-primary mb-4 md:mb-6">
               Ready to scale?
             </p>
@@ -79,7 +83,7 @@ export default function Footer() {
         <div className="w-full flex flex-col mt-20 md:mt-auto">
           
           {/* Mobile-Only Back to Top (Centered for easy thumb access) */}
-          <div className="footer-fade flex justify-center w-full mb-16 md:hidden">
+          <div className="footer-fade will-change-transform flex justify-center w-full mb-16 md:hidden">
              <button 
                onClick={scrollToTop} 
                className="group flex cursor-pointer items-center justify-center gap-3 w-full max-w-[200px] px-5 py-4 rounded-full bg-background/5 border border-background/10 active:bg-primary active:border-primary transition-all duration-300"
@@ -92,7 +96,7 @@ export default function Footer() {
           </div>
 
           {/* Metadata Bar */}
-          <div className="footer-fade max-w-[1400px] 2xl:max-w-[1600px] w-full mx-auto px-6 md:px-12 lg:px-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-8 md:pb-12 border-t md:border-t-0 border-background/10 pt-8 md:pt-0">
+          <div className="footer-fade will-change-transform max-w-[1400px] 2xl:max-w-[1600px] w-full mx-auto px-6 md:px-12 lg:px-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-8 md:pb-12 border-t md:border-t-0 border-background/10 pt-8 md:pt-0">
              
              {/* Info Stack */}
              <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-6 w-full md:w-auto">
@@ -121,7 +125,7 @@ export default function Footer() {
           </div>
 
           {/* THE NAME - Adaptive Hierarchy */}
-          <div className="footer-fade w-full overflow-hidden flex justify-start md:justify-center items-end px-6 md:px-8 pb-0 md:pb-6">
+          <div className="footer-fade will-change-transform w-full overflow-hidden flex justify-start md:justify-center items-end px-6 md:px-8 pb-0 md:pb-6">
             <h1 className="text-3xl md:text-[13.5vw] font-black tracking-tighter leading-[0.75] uppercase text-background md:opacity-90 text-left md:text-center w-full">
               Eklak Alam
             </h1>

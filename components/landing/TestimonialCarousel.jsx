@@ -86,6 +86,8 @@ export default function TestimonialCarousel() {
     if (diff > Math.floor(total / 2)) diff -= total;
     if (diff < -Math.floor(total / 2)) diff += total;
 
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
     if (diff === 0) {
       // Center Active Card
       return {
@@ -95,35 +97,35 @@ export default function TestimonialCarousel() {
         scale: 1.05,
         zIndex: 30,
         opacity: 1,
-        boxShadow: "0 20px 40px -10px rgba(0, 0, 0, 0.1)",
+        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.15)", // Softer, deeper premium shadow
       };
     } else if (diff === -1) {
       // Left Card
       return {
-        x: typeof window !== "undefined" && window.innerWidth < 768 ? "-75%" : "-60%",
-        z: -100,
+        x: isMobile ? "-75%" : "-60%",
+        z: -120, // Pushed further back for more depth
         rotateY: 15,
-        scale: 0.95,
+        scale: 0.9,
         zIndex: 20,
-        opacity: 0.9,
-        boxShadow: "-10px 10px 20px -10px rgba(0,0,0,0.05)",
+        opacity: 0.5, // Dimmed slightly more to make the center card pop
+        boxShadow: "-10px 15px 25px -10px rgba(0,0,0,0.05)",
       };
     } else if (diff === 1) {
       // Right Card
       return {
-        x: typeof window !== "undefined" && window.innerWidth < 768 ? "75%" : "60%",
-        z: -100,
+        x: isMobile ? "75%" : "60%",
+        z: -120,
         rotateY: -15,
-        scale: 0.95,
+        scale: 0.9,
         zIndex: 20,
-        opacity: 0.9,
-        boxShadow: "10px 10px 20px -10px rgba(0,0,0,0.05)",
+        opacity: 0.5,
+        boxShadow: "10px 15px 25px -10px rgba(0,0,0,0.05)",
       };
     } else {
       // Hidden Cards
       return {
         x: diff < 0 ? "-120%" : "120%",
-        z: -300,
+        z: -250,
         rotateY: diff < 0 ? 30 : -30,
         scale: 0.8,
         zIndex: 10,
@@ -140,7 +142,7 @@ export default function TestimonialCarousel() {
       id="testimonial"
       className="py-20 md:py-32 overflow-hidden relative w-full flex flex-col items-center justify-center bg-[var(--color-background)] font-sans"
     >
-      {/* Header Section */}
+      {/* Header Section - Exactly as you requested */}
       <div className="text-center mb-16 md:mb-24 px-6 relative z-40">
         <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif font-medium tracking-tight text-[var(--color-foreground)]">
           Kind words <span className="text-[#e8751a]">from collaborators</span>
@@ -158,31 +160,34 @@ export default function TestimonialCarousel() {
       >
         <AnimatePresence initial={false}>
           {testimonials.map((testimonial, index) => {
+            const isActive = index === currentIndex;
+            
             return (
               <motion.div
                 key={testimonial.id}
                 initial={false}
                 animate={getCardStyle(index)}
-                // Upgraded transition to Spring for a smoother, buttery feel
+                // Heavier, smoother spring physics to completely eliminate lag/jitter
                 transition={{
                   type: "spring",
-                  stiffness: 300,
-                  damping: 30,
-                  mass: 0.8,
+                  stiffness: 85,
+                  damping: 20,
+                  mass: 1.2,
                 }}
-                // Drag properties added here
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
                 dragElastic={0.2}
                 onDragEnd={handleDragEnd}
-                // Added cursor-grab classes here
-                className="absolute w-[300px] sm:w-[340px] md:w-[380px] h-[420px] md:h-[480px] rounded-3xl p-8 flex flex-col justify-between border border-black/5 cursor-grab active:cursor-grabbing"
+                // 'will-change-transform' forces the GPU to render this, stopping scroll lag
+                className={`absolute w-[300px] sm:w-[340px] md:w-[380px] h-[420px] md:h-[480px] rounded-3xl p-8 flex flex-col justify-between border border-black/5 cursor-grab active:cursor-grabbing will-change-transform ${
+                  isActive ? "pointer-events-auto" : "pointer-events-none"
+                }`}
                 style={{
                   backgroundColor: testimonial.bgColor,
                   transformStyle: "preserve-3d",
                   transformOrigin: "center center",
                 }}
-                onClick={() => setCurrentIndex(index)}
+                onClick={() => !isActive && setCurrentIndex(index)}
               >
                 {/* Testimonial Text */}
                 <div className="text-[#4a4a4a] text-sm md:text-base leading-relaxed md:leading-[1.8] font-serif whitespace-pre-line overflow-hidden tracking-wide opacity-90 pointer-events-none">
@@ -213,8 +218,7 @@ export default function TestimonialCarousel() {
                     href={testimonial.linkedin}
                     target="_blank"
                     rel="noreferrer"
-                    // Restored pointer-events for the link so it remains clickable
-                    className="text-[#666] hover:text-[#0a66c2] transition-colors ml-2 shrink-0 mb-1 pointer-events-auto"
+                    className={`text-[#666] hover:text-[#0a66c2] transition-colors ml-2 shrink-0 mb-1 ${isActive ? "pointer-events-auto" : "pointer-events-none"}`}
                     onClick={(e) => e.stopPropagation()}
                   >
                     <Linkedin className="w-5 h-5" strokeWidth={1.5} />
@@ -226,11 +230,11 @@ export default function TestimonialCarousel() {
         </AnimatePresence>
       </div>
 
-      {/* Unified Pill Controller */}
+      {/* Unified Pill Controller - Exact same layout, refined transition timings */}
       <div className="flex items-center gap-6 mt-12 z-40 relative">
         <button
           onClick={handlePrev}
-          className="w-10 h-10 cursor-pointer rounded-full bg-[var(--color-border)] flex items-center justify-center text-[var(--color-foreground)] hover:bg-[var(--color-primary)] hover:text-[var(--color-brand-lightest)] transition-all duration-300"
+          className="w-10 h-10 cursor-pointer rounded-full bg-[var(--color-border)] flex items-center justify-center text-[var(--color-foreground)] hover:bg-[var(--color-primary)] hover:text-[var(--color-brand-lightest)] transition-all duration-300 ease-out"
         >
           <ChevronLeft size={20} />
         </button>
@@ -241,10 +245,10 @@ export default function TestimonialCarousel() {
             <button
               key={idx}
               onClick={() => setCurrentIndex(idx)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              className={`h-2 rounded-full transition-all duration-500 ease-out ${
                 idx === currentIndex
                   ? "bg-[var(--color-primary)] w-4"
-                  : "bg-[var(--color-muted)] opacity-50 hover:opacity-100"
+                  : "bg-[var(--color-muted)] w-2 opacity-50 hover:opacity-100"
               }`}
             />
           ))}
@@ -252,7 +256,7 @@ export default function TestimonialCarousel() {
 
         <button
           onClick={handleNext}
-          className="w-10 h-10 cursor-pointer rounded-full bg-[var(--color-border)] flex items-center justify-center text-[var(--color-foreground)] hover:bg-[var(--color-primary)] hover:text-[var(--color-brand-lightest)] transition-all duration-300"
+          className="w-10 h-10 cursor-pointer rounded-full bg-[var(--color-border)] flex items-center justify-center text-[var(--color-foreground)] hover:bg-[var(--color-primary)] hover:text-[var(--color-brand-lightest)] transition-all duration-300 ease-out"
         >
           <ChevronRight size={20} />
         </button>
