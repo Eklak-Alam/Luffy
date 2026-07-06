@@ -20,7 +20,6 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -28,13 +27,22 @@ const jsonLd = {
   url: "https://eklak.site",
   image: "https://eklak.site/og-image.jpg",
   jobTitle: "Software Engineer",
-  description: "Software Engineer specializing in scalable architectures, cloud infrastructure, and premium user experiences.",
+  description:
+    "Software Engineer specializing in scalable architectures, cloud infrastructure, and premium user experiences.",
   sameAs: [
     "https://x.com/eklak__alam",
     "https://github.com/Eklak-Alam",
     "https://www.linkedin.com/in/eklak-alam/",
   ],
-  knowsAbout: ["Software Engineering", "Cloud Architecture", "DevOps", "React", "Next.js", "TypeScript", "AWS"],
+  knowsAbout: [
+    "Software Engineering",
+    "Cloud Architecture",
+    "DevOps",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "AWS",
+  ],
 };
 
 export const metadata = {
@@ -43,8 +51,20 @@ export const metadata = {
     default: "Eklak Alam",
     template: "%s | Eklak Alam",
   },
-  description: "Portfolio of Eklak Alam — Software Engineer specializing in scalable architectures, cloud infrastructure, and premium user experiences.",
-  keywords: ["Eklak Alam", "Software Engineer", "Cloud Architect", "DevOps", "Full Stack Developer", "Portfolio", "React", "Next.js", "TypeScript", "AWS"],
+  description:
+    "Portfolio of Eklak Alam — Software Engineer specializing in scalable architectures, cloud infrastructure, and premium user experiences.",
+  keywords: [
+    "Eklak Alam",
+    "Software Engineer",
+    "Cloud Architect",
+    "DevOps",
+    "Full Stack Developer",
+    "Portfolio",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "AWS",
+  ],
   authors: [{ name: "Eklak Alam", url: "https://eklak.site" }],
   creator: "Eklak Alam",
   publisher: "Eklak Alam",
@@ -54,22 +74,38 @@ export const metadata = {
     locale: "en_US",
     url: "https://eklak.site",
     title: "Eklak Alam — Software Engineer",
-    description: "Building scalable architectures, cloud infrastructure, and premium user experiences.",
+    description:
+      "Building scalable architectures, cloud infrastructure, and premium user experiences.",
     siteName: "Eklak Alam",
-    images: [{ url: "/logo.png", width: 1200, height: 630, alt: "Eklak Alam — Software Engineer Portfolio", type: "image/jpeg" }],
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Eklak Alam — Software Engineer Portfolio",
+        type: "image/jpeg",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     site: "@eklak__alam",
     creator: "@eklak__alam",
     title: "Eklak Alam — Software Engineer",
-    description: "Building scalable architectures, cloud infrastructure, and premium user experiences.",
+    description:
+      "Building scalable architectures, cloud infrastructure, and premium user experiences.",
     images: ["/logo.png"],
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true, "max-video-preview": -1, "max-image-preview": "large", "max-snippet": -1 },
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   applicationName: "Eklak Alam Portfolio",
   category: "technology",
@@ -78,22 +114,23 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-<html className={`${fraunces.variable} ${dmSans.variable}`}>
-      <body className={`font-[family-name:var(--font-body)] antialiased bg-background text-foreground overflow-x-hidden max-w-[100vw]`}>
-
-        <Toaster 
+    <html className={`${fraunces.variable} ${dmSans.variable}`}>
+      <body
+        className={`font-[family-name:var(--font-body)] antialiased bg-background text-foreground overflow-x-hidden max-w-[100vw]`}
+      >
+        <Toaster
           position="bottom-center"
           toastOptions={{
             style: {
-              background: 'var(--color-brand-dark)',
-              color: 'var(--color-brand-lightest)',
-              border: '1px solid var(--color-brand-light)',
-              fontWeight: '600',
-              letterSpacing: '0.05em',
+              background: "var(--color-brand-dark)",
+              color: "var(--color-brand-lightest)",
+              border: "1px solid var(--color-brand-light)",
+              fontWeight: "600",
+              letterSpacing: "0.05em",
             },
             iconTheme: {
-              primary: 'var(--color-brand-accent)', // The orange for the error icon!
-              secondary: 'var(--color-brand-lightest)',
+              primary: "var(--color-brand-accent)", // The orange for the error icon!
+              secondary: "var(--color-brand-lightest)",
             },
           }}
         />
