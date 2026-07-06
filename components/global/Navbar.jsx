@@ -10,6 +10,7 @@ import { ArrowUpRight, X, Download } from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "#home" },
+  { name: "Blogs", href: "https://blogs.eklak.site", isExternal: true },
   { name: "About", href: "#about" },
   { name: "Work", href: "#projects" },
   { name: "Testimonial", href: "#testimonial" },
@@ -69,16 +70,16 @@ export default function Navbar() {
       tl.fromTo(
         navRef.current,
         { y: -20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
+        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
       );
       tl.fromTo(
         ".nav-item",
         { y: -10, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.6, stagger: 0.05, ease: "power2.out" },
-        "-=0.5"
+        "-=0.5",
       );
     },
-    { scope: navRef }
+    { scope: navRef },
   );
 
   return (
@@ -106,8 +107,24 @@ export default function Navbar() {
             {/* 2. CENTER: Desktop Links */}
             <nav className="hidden md:flex flex-[2] justify-center items-center gap-8">
               {navLinks.map((link) => {
-                const isActive = activeLink === link.href;
+                // Minimal External Link without background
+                if (link.isExternal) {
+                  return (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="nav-item flex items-center gap-1 py-2 text-sm font-bold uppercase tracking-widest text-[#e8751a] hover:opacity-70 transition-opacity duration-300"
+                    >
+                      {link.name}
+                      <ArrowUpRight className="w-4 h-4" />
+                    </a>
+                  );
+                }
 
+                // Standard Link
+                const isActive = activeLink === link.href;
                 return (
                   <a
                     key={link.name}
@@ -174,8 +191,34 @@ export default function Navbar() {
           >
             <nav className="flex flex-col gap-6">
               {navLinks.map((link, i) => {
-                const isActive = activeLink === link.href;
+                // Mobile Minimal External Link
+                if (link.isExternal) {
+                  return (
+                    <motion.div
+                      key={link.name}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ delay: 0.1 + i * 0.05, duration: 0.4 }}
+                    >
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 w-fit group"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <span className="text-5xl font-black tracking-tighter uppercase text-[#e8751a] transition-opacity duration-300 group-hover:opacity-70">
+                          {link.name}
+                        </span>
+                        <ArrowUpRight className="w-8 h-8 text-[#e8751a] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      </a>
+                    </motion.div>
+                  );
+                }
 
+                // Standard Mobile Link
+                const isActive = activeLink === link.href;
                 return (
                   <motion.div
                     key={link.name}
@@ -212,8 +255,8 @@ export default function Navbar() {
             >
               <button
                 onClick={() => {
-                  setIsOpen(false); 
-                  setTimeout(() => setIsResumeModalOpen(true), 300); 
+                  setIsOpen(false);
+                  setTimeout(() => setIsResumeModalOpen(true), 300);
                 }}
                 className="group flex items-center gap-2 text-2xl font-extrabold uppercase tracking-widest text-foreground hover:text-primary transition-colors w-fit"
               >
@@ -241,14 +284,14 @@ export default function Navbar() {
               exit={{ scale: 0.95, opacity: 0, y: 30 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               className="relative w-full max-w-4xl h-[90vh] md:h-[85vh] bg-background border border-border/40 rounded-2xl shadow-2xl flex flex-col overflow-hidden"
-              onClick={(e) => e.stopPropagation()} 
+              onClick={(e) => e.stopPropagation()}
             >
               {/* Modal Header */}
               <div className="flex items-center justify-between px-4 md:px-6 py-4 border-b border-border/40 bg-muted/20">
                 <h2 className="text-lg md:text-xl uppercase text-[#40513B]">
                   Eklak Alam
                 </h2>
-                
+
                 <div className="flex items-center gap-3 md:gap-5">
                   {/* Download Button */}
                   <a
@@ -259,7 +302,7 @@ export default function Navbar() {
                     <Download className="w-4 h-4" />
                     <span className="hidden sm:inline">Download</span>
                   </a>
-                  
+
                   {/* Close Button */}
                   <button
                     onClick={() => setIsResumeModalOpen(false)}
@@ -277,7 +320,7 @@ export default function Navbar() {
                     Loading Resume...
                   </span>
                 </div>
-                
+
                 <iframe
                   src={resumePreviewUrl}
                   className="w-full h-full border-none z-10"
