@@ -4,6 +4,8 @@ import { useRef, useEffect } from "react";
 import { ArrowUp, ArrowUpRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   const footerRef = useRef(null);
@@ -17,14 +19,14 @@ export default function Footer() {
       // Supercharged GSAP Physics
       gsap.fromTo(
         ".footer-fade",
-        { y: 60, opacity: 0 }, // Start further down and completely hidden
+        { y: 60, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 1.5, // Longer duration for a more luxurious glide
-          stagger: 0.12, // Tighter stagger
-          ease: "expo.out", // High-end "snap and settle" easing
-          force3D: true, // Forces GPU acceleration to completely kill lag
+          duration: 1.5,
+          stagger: 0.12,
+          ease: "expo.out",
+          force3D: true,
           scrollTrigger: {
             trigger: footerRef.current,
             start: "top 85%",
@@ -46,15 +48,27 @@ export default function Footer() {
       className="relative w-full h-[85vh] md:h-[100dvh]"
       style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0% 100%)" }}
     >
-      {/* 1. OUTER WRAPPER: Reserves the scroll space and masks the fixed content below */}
-      
-      {/* 2. INNER FIXED CONTAINER: Sits underneath the page content */}
-      <div className="fixed bottom-0 left-0 w-full h-[85vh] md:h-[100dvh] bg-foreground text-background flex flex-col justify-between py-16 md:py-0 z-[-1]">
+      <div className="fixed bottom-0 left-0 w-full h-[85vh] md:h-[100dvh] bg-foreground text-background flex flex-col justify-between py-12 md:py-16 z-[-1]">
         
-        {/* ================= TOP SECTION: LET'S CHAT ================= */}
-        <div className="max-w-[1400px] 2xl:max-w-[1600px] w-full mx-auto px-6 md:px-12 lg:px-16 md:flex-1 flex flex-col justify-center">
+        {/* ================= TOP LOGO ROW (TOP RIGHT) ================= */}
+        <div className="w-full max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 flex justify-end">
+          <div className="footer-fade will-change-transform">
+            <Link href="/" className="inline-block transition-opacity">
+              {/* Raw logo, no backgrounds, no shadows. Large on desktop, optimized for mobile */}
+              <Image 
+                src="/logo-new-white.png" 
+                alt="Eklak Logo" 
+                width={200} 
+                height={60} 
+                className="w-[120px] md:w-[160px] lg:w-[220px] h-auto object-contain"
+              />
+            </Link>
+          </div>
+        </div>
+
+        {/* ================= CENTER SECTION: LET'S CHAT ================= */}
+        <div className="max-w-[1400px] 2xl:max-w-[1600px] w-full mx-auto px-6 md:px-12 lg:px-16 flex-1 flex flex-col justify-center">
           
-          {/* Added will-change-transform for lag-free performance */}
           <div className="footer-fade will-change-transform flex flex-col items-start w-full">
             <p className="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-primary mb-4 md:mb-6">
               Ready to scale?
@@ -69,9 +83,7 @@ export default function Footer() {
               </h2>
               
               <div className="relative overflow-hidden w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full border border-background/20 group-hover:border-primary flex items-center justify-center transition-colors duration-500 shrink-0 bg-background/5 group-hover:bg-primary/10">
-                {/* Arrow 1: Shoots out to the top right on hover */}
                 <ArrowUpRight className="absolute w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-background group-hover:text-primary translate-x-0 translate-y-0 group-hover:translate-x-full group-hover:-translate-y-full transition-transform duration-500 ease-in-out" />
-                {/* Arrow 2: Glides in from the bottom left on hover */}
                 <ArrowUpRight className="absolute w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-primary -translate-x-full translate-y-full group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500 ease-in-out" />
               </div>
             </a>
@@ -80,9 +92,9 @@ export default function Footer() {
         </div>
 
         {/* ================= BOTTOM SECTION: METADATA & NAME ================= */}
-        <div className="w-full flex flex-col mt-20 md:mt-auto">
+        <div className="w-full flex flex-col">
           
-          {/* Mobile-Only Back to Top (Centered for easy thumb access) */}
+          {/* Mobile-Only Back to Top */}
           <div className="footer-fade will-change-transform flex justify-center w-full mb-16 md:hidden">
              <button 
                onClick={scrollToTop} 
@@ -103,9 +115,7 @@ export default function Footer() {
                 <p className="text-xs md:text-sm font-bold text-background/80 tracking-wider">
                   System Architect & Full-Stack Engineer
                 </p>
-                
                 <span className="hidden md:block w-1 h-1 rounded-full bg-primary" />
-                
                 <p className="text-xs md:text-sm font-bold text-background/60 uppercase tracking-[0.2em]">
                   India
                 </p>

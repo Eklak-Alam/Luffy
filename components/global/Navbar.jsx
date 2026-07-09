@@ -7,6 +7,7 @@ import { useGSAP } from "@gsap/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, X, Download } from "lucide-react";
+import Image from "next/image";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -92,17 +93,24 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-20">
             {/* 1. LEFT: Logo */}
             <div className="flex-1 flex justify-start nav-item">
-              <Link
-                href="#home"
-                onClick={() => {
-                  setIsOpen(false);
-                  setActiveLink("#home");
-                }}
-                className="text-2xl font-bold tracking-tighter text-foreground transition-opacity hover:opacity-80"
-              >
-                Eklak<span className="text-[#e8751a]">.</span>
-              </Link>
-            </div>
+            <Link
+              href="#home"
+              onClick={() => {
+                setIsOpen(false);
+                setActiveLink("#home");
+              }}
+              // Kept the hover effect, added flex to align it nicely
+              className="transition-opacity flex items-center" 
+            >
+              <Image
+                src="/logo-new-black.png" // 👈 Change this to the exact name of your file in the public folder
+                alt="Eklak Logo" 
+                width={60} // 👈 Adjust the width to fit your design
+                height={40} // 👈 Adjust the height to fit your design
+                className="object-contain"
+              />
+            </Link>
+          </div>
 
             {/* 2. CENTER: Desktop Links */}
             <nav className="hidden md:flex flex-[2] justify-center items-center gap-8">
